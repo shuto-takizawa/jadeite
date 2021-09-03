@@ -1,0 +1,12 @@
+version: '3'
+services:
+  teaser-site:
+    image: node:16
+    container_name: teaser
+    ports:
+      - '9005:9005'
+      - '5000:5000'
+    working_dir: /usr/src
+    volumes:
+      - ./01_teaser_site/:/usr/src/
+    tty: true
