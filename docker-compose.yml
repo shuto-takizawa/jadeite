@@ -1,7 +1,8 @@
 version: '3'
 services:
   teaser-site:
-    image: node:16
+    build: ./01_teaser_site
+    image: firebsae
     container_name: teaser
     ports:
       - '9005:9005'

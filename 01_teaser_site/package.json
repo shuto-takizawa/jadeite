@@ -1,9 +1,0 @@
-{
-  "name": "jadeite-teaser-site",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "devDependencies": {
-    "firebase-tools": "^9.17.0"
-  }
-}
