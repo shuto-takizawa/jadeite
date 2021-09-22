@@ -11,3 +11,14 @@ services:
     volumes:
       - ./01_teaser_site/:/usr/src/
     tty: true
+
+  production-site:
+    build: ./02_production_site
+    image: node:14
+    container_name: production
+    ports:
+      - '3000:3000'
+    working_dir: /usr/src
+    volumes:
+      - ./02_production_site/:/usr/src/
+    tty: true
