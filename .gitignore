@@ -46,6 +46,7 @@ build/Release
 
 # Dependency directories
 node_modules/
+jspm_packages/
 
 # Optional npm cache directory
 .npm
@@ -65,5 +66,36 @@ node_modules/
 # dotenv environment variables file
 .env
 
-# MacOSX
+# TypeScript v1 declaration files
+typings/
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+
+# next.js build output
+.next
+
+# nuxt.js build output
+.nuxt
+
+# Nuxt generate
+dist
+
+# vuepress build output
+.vuepress/dist
+
+# Serverless directories
+.serverless
+
+# IDE / Editor
+.idea
+.vscode
+
+# Service worker
+sw.*
+
+# macOS
 .DS_Store
+
+# Vim swap files
+*.swp
