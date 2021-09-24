@@ -1,7 +1,56 @@
 // ************************
-// サイト全体の共通スタイル
+// サイト全体共通スタイル
 // ************************
 body {
-  color: $site-black;
+  @apply text-site-black;
+
   font-family: 'Open Sans', sans-serif;
+}
+
+.main {
+  padding-top: $header-h;
+  // min-height: calc(100vh - #{$header-h});
+}
+
+.short-divider {
+  @apply mx-auto w-14 bg-gray-400;
+
+  height: 1px;
+}
+
+// ************************
+// 各ページ共通スタイル
+// ************************
+.page-title {
+  @apply relative py-40 text-4xl font-semibold;
+
+  &::after {
+    @apply absolute top-1/2 ml-8 w-12 bg-site-black;
+
+    content: '';
+    height: 2px;
+  }
+}
+
+.page-sub-title {
+  @apply mb-8 text-2xl;
+}
+
+// ************************
+// アイコンスタイル
+// ************************
+
+/** Twitter */
+[data-icon='twitter'] {
+  @apply text-blue-400;
+}
+
+/** Youtube */
+[data-icon='youtube'] {
+  @apply text-red-500;
+}
+
+/** Twitch */
+[data-icon='twitch'] {
+  @apply text-purple-500;
 }

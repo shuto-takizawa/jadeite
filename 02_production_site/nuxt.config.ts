@@ -1,4 +1,5 @@
 import { NuxtConfig } from '@nuxt/types'
+
 const nuxtConfig: NuxtConfig = {
   srcDir: 'src/',
   // Target: https://go.nuxtjs.dev/config-target
@@ -6,7 +7,8 @@ const nuxtConfig: NuxtConfig = {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'jadeite',
+    title: 'Jadeite',
+    titleTemplate: '%s | Jadeite',
     htmlAttrs: {
       lang: 'ja'
     },
@@ -51,12 +53,13 @@ const nuxtConfig: NuxtConfig = {
     '@nuxtjs/google-fonts',
     'nuxt-microcms-module',
     '@nuxtjs/fontawesome',
+    '@nuxt/image',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
     '@nuxtjs/style-resources',
+    '@nuxtjs/moment',
   ],
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -72,7 +75,7 @@ const nuxtConfig: NuxtConfig = {
   },
   googleFonts: {
     families: {
-      'Open+Sans': true,
+      'Open+Sans': [300, 400, 600, 700, 800],
     },
     display: 'swap'
   },
@@ -85,6 +88,12 @@ const nuxtConfig: NuxtConfig = {
   },
   fontawesome: {
     component: 'fa',
+  },
+  tailwindcss: {
+    configPath: '../tailwind.config.js'
+  },
+  image: {
+    domains: ['https://images.microcms-assets.io']
   }
 }
 
