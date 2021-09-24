@@ -25,15 +25,15 @@ body {
   @apply relative py-40 text-4xl font-semibold;
 
   &::after {
-    @apply absolute top-1/2 ml-8 w-12 bg-site-black;
+    @apply absolute top-1/2 ml-8 w-16 bg-site-black;
 
     content: '';
-    height: 2px;
+    height: 1px;
   }
 }
 
 .page-sub-title {
-  @apply mb-8 text-2xl;
+  @apply my-8 text-2xl;
 }
 
 // ************************

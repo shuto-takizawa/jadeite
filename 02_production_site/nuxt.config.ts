@@ -94,7 +94,7 @@ const nuxtConfig: NuxtConfig = {
   },
   image: {
     domains: ['https://images.microcms-assets.io']
-  }
+  },
 }
 
 export default nuxtConfig

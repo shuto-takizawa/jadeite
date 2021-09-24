@@ -1,22 +1,21 @@
 <template>
-  <div class="">
-    <card
-      v-for="sponsor in sponsors"
-      :key="sponsor.id"
-      :sponsor="sponsor"
-    />
+  <div class="flex">
+    <div>
+      <p>{{ sponsor.description }}</p>
+    </div>
+    <div>
+      <nuxt-img :src="sponsor.logo.url" :alt="sponsor.name" />
+    </div>
   </div>
 </template>
 
 <script lang='ts'>
 import { defineComponent, PropType } from '@nuxtjs/composition-api'
 import { sponsors } from '~/types/cms-types'
-import Card from '~/components/atoms/sponsor-card.vue'
 export default defineComponent({
-  components: { Card },
   props: {
-    sponsors: {
-      type: Array as PropType<sponsors[]>,
+    sponsor: {
+      type: Object as PropType<sponsors>,
       required: true,
     }
   },

@@ -12,9 +12,12 @@ import { MicroResponseType } from '~/types/microcms'
 import NewsList from '~/components/molecules/news-list.vue'
 
 export default defineComponent({
-  layout: 'simple',
   components: {
     NewsList,
+  },
+  head: {
+    title: 'News',
+    // TODO : meta設定
   },
   setup () {
     const { $microcms } = useContext()

@@ -18,10 +18,10 @@
 <script lang='ts'>
 import { defineComponent } from '@nuxtjs/composition-api'
 export default defineComponent({
-  layout: 'simple',
   head: {
     title: 'About us',
     meta: [
+      // TODO : meta設定
       { name: 'description', content: 'Jadeiteについての詳細です。' }
     ]
   }

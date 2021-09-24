@@ -1,5 +1,5 @@
 <template>
-  <footer class="mt-40 p-8">
+  <footer class="mt-48 p-8">
     <div class="grid grid-cols-3 px-16">
       <logo :width="200" />
       <div class="grid grid-cols-2">

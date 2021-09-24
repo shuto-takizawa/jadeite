@@ -78,10 +78,10 @@
 <script lang='ts'>
 import { defineComponent } from '@nuxtjs/composition-api'
 export default defineComponent({
-  layout: 'simple',
   head: {
     title: 'Privacy policy',
     meta: [
+      // TODO : meta設定
       { name: 'description', content: '株式会社アンヴィルの経営方針です。' }
     ]
   }

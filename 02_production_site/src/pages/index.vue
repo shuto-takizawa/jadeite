@@ -55,6 +55,7 @@ import NewsList from '~/components/molecules/news-list.vue'
 import SponsorList from '~/components/molecules/sponsor-list.vue'
 
 export default defineComponent({
+  layout: 'top',
   components: {
     NewsList,
     SponsorList,
@@ -62,6 +63,7 @@ export default defineComponent({
   head: {
     title: 'Jadeite',
     titleTemplate: '',
+    // TODO : meta設定
   },
   setup () {
     const { $microcms } = useContext()

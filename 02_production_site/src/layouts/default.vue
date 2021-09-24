@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <nuxt class="main" />
+    <nuxt class="main container max-w-5xl" />
     <Footer />
   </div>
 </template>

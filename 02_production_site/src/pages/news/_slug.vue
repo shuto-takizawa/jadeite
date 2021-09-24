@@ -12,22 +12,28 @@ import { defineComponent, useAsync, useContext, useMeta } from '@nuxtjs/composit
 import { news } from '~/types/cms-types'
 import Tag from '~/components/atoms/tag.vue'
 export default defineComponent({
-  layout: 'simple',
   components: {
     Tag,
   },
   head: {},
   watchQuery: ['slug'],
   setup () {
-    const { params, $microcms, $log } = useContext()
+    const { params, $microcms, $log, error } = useContext()
+    // TODO : meta設定
     const { title } = useMeta()
     const news = useAsync(async () => {
-      const res = await $microcms.get<news>({
-        endpoint: 'news',
-        contentId: params.value.slug
-      })
-      title.value = res.title
-      return res
+      try {
+        const res = await $microcms.get<news>({
+          endpoint: 'news',
+          contentId: params.value.slug
+        })
+        title.value = res.title
+        return res
+      } catch (e) {
+        return error({
+          statusCode: 404,
+        })
+      }
     })
     $log.info('news result:', news.value)
     return {

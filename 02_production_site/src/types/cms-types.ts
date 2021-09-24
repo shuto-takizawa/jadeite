@@ -33,6 +33,10 @@ T,
    * Twitter
    */
   twitter?: string
+  /**
+   * メンバー
+   */
+  members?: Reference<T,members>[]
 }>
 
 export type team_battle_record<T='get'> = Structure<
