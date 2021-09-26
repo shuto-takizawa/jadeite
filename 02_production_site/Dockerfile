@@ -7,3 +7,5 @@ RUN apk update && \
     python \
     make \
     g++
+
+RUN yarn global add firebase-tools

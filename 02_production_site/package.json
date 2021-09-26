@@ -38,6 +38,7 @@
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-vue": "^7.12.1",
     "fibers": "^5.0.0",
+    "firebase": "^9.1.0",
     "microcms-typescript": "^1.0.8",
     "nuxt-microcms-module": "^1.0.1",
     "postcss": "^8.3.5",

@@ -14,10 +14,11 @@ services:
 
   production-site:
     build: ./02_production_site
-    image: node:14
+    image: jadeite
     container_name: production
     ports:
       - '3000:3000'
+      - '9005:9005'
     working_dir: /usr/src
     volumes:
       - ./02_production_site/:/usr/src/
