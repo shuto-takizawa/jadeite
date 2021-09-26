@@ -35,7 +35,8 @@ const nuxtConfig: NuxtConfig = {
   },
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/logger'
+    '~/plugins/logger',
+    '~/plugins/validate',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -63,6 +64,12 @@ const nuxtConfig: NuxtConfig = {
   ],
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    transpile: [
+      'vee-validate/dist/rules',
+    ]
+  },
+  generate: {
+    fallback: true,
   },
   server: {
     host: '0.0.0.0'

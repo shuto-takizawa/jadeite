@@ -31,11 +31,17 @@
     <!-- スポンサー一覧 -->
     <section v-if="sponsors" class="container max-w-5xl grid grid-cols-4">
       <a
-        v-for="sponsor in sponsors.contents"
+        v-for="sponsor in sponsors"
         :key="sponsor.id"
         :href="sponsor.url"
         target="blank"
       >
+      <!-- <a
+        v-for="sponsor in sponsors.contents"
+        :key="sponsor.id"
+        :href="sponsor.url"
+        target="blank"
+      > -->
         <nuxt-img
           :src="sponsor.logo.url"
           :alt="sponsor.name"
@@ -47,7 +53,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, useAsync, useContext } from '@nuxtjs/composition-api'
+import { defineComponent, ref, useAsync, useFetch, useContext } from '@nuxtjs/composition-api'
 import { twitter, twitch, youtube } from '~/utils/font-awesome'
 import { news, sponsors } from '~/types/cms-types'
 import { MicroResponseType } from '~/types/microcms'
@@ -67,18 +73,22 @@ export default defineComponent({
   },
   setup () {
     const { $microcms } = useContext()
-    const newsItems = useAsync(() => $microcms.get<MicroResponseType<news>>({
-      endpoint: 'news',
-      queries: {
-        limit: 6,
-        orders: '-publishedAt'
-      }
-    }))
-    const sponsors = useAsync(() => $microcms.get<MicroResponseType<sponsors>>({
-      endpoint: 'sponsors'
-    }))
+    // const newsItems = useAsync(() => $microcms.get<MicroResponseType<news>>({
+    //   endpoint: 'news',
+    //   queries: {
+    //     limit: 6,
+    //     orders: '-publishedAt'
+    //   }
+    // }))
+    const sponsors = ref()
+    useFetch(async () => {
+      const data = await $microcms.get<MicroResponseType<sponsors>>({endpoint: 'sponsors'})
+      sponsors.value = data.contents
+    })
+    // const sponsors = useAsync(() => $microcms.get<MicroResponseType<sponsors>>({endpoint: 'sponsors'}))
+
     return {
-      newsItems,
+      // newsItems,
       sponsors,
       twitter,
       twitch,

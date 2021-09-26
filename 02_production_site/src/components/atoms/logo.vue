@@ -1,6 +1,6 @@
 <template>
   <img
-    src="~/assets/img/logo.svg"
+    src="~/assets/image/logo.svg"
     alt="logo"
     :width="width"
   >

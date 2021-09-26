@@ -2,6 +2,7 @@
   <div>
     <h1 class="page-title">News</h1>
     <news-list v-if="newsItems" :items="newsItems.contents" />
+    <!-- TODO : ページネーション -->
   </div>
 </template>
 
