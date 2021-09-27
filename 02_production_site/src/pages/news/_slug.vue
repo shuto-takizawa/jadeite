@@ -8,7 +8,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, useAsync, useContext, useMeta } from '@nuxtjs/composition-api'
+import { defineComponent, useContext, useMeta, useFetch, ref } from '@nuxtjs/composition-api'
 import { news } from '~/types/cms-types'
 import Tag from '~/components/atoms/tag.vue'
 export default defineComponent({
@@ -18,21 +18,23 @@ export default defineComponent({
   head: {},
   watchQuery: ['slug'],
   setup () {
-    const { params, $microcms, $log, error } = useContext()
+    const { params, $microcms, $log, error, redirect } = useContext()
     // TODO : meta設定
     const { title } = useMeta()
-    const news = useAsync(async () => {
+    const news = ref<news>()
+    useFetch(async () => {
       try {
         const res = await $microcms.get<news>({
           endpoint: 'news',
           contentId: params.value.slug
         })
         title.value = res.title
-        return res
+        news.value = res
       } catch (e) {
-        return error({
+        error({
           statusCode: 404,
         })
+        if (process.server) redirect(404, '/')
       }
     })
     $log.info('news result:', news.value)

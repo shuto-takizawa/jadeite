@@ -1,12 +1,12 @@
 <template>
   <div>
     <h1 class="page-title">Sponsor</h1>
-    <sponsor-list v-if="sponsors" :sponsors="sponsors.contents" />
+    <sponsor-list v-if="sponsors" :sponsors="sponsors" />
   </div>
 </template>
 
 <script lang='ts'>
-import { defineComponent, useAsync, useContext } from '@nuxtjs/composition-api'
+import { defineComponent, useContext, useFetch, ref } from '@nuxtjs/composition-api'
 import { sponsors } from '~/types/cms-types'
 import { MicroResponseType } from '~/types/microcms'
 import SponsorList from '~/components/molecules/sponsor-list.vue'
@@ -19,9 +19,11 @@ export default defineComponent({
   },
   setup () {
     const { $microcms } = useContext()
-    const sponsors = useAsync(() => $microcms.get<MicroResponseType<sponsors>>({
-      endpoint: 'sponsors'
-    }))
+    const sponsors = ref<sponsors[]>()
+    useFetch(async () => {
+      const { contents } = await $microcms.get<MicroResponseType<sponsors>>({endpoint: 'sponsors'})
+      sponsors.value = contents
+    })
     return {
       sponsors,
     }

@@ -6,7 +6,7 @@
       <div class="my-10 short-divider" />
       <div v-if="teams" class="grid grid-cols-3">
         <team-card
-          v-for="team in teams.contents"
+          v-for="team in teams"
           :key="team.id"
           :team="team"
         />
@@ -18,7 +18,7 @@
     <!-- メンバー一覧 -->
     <section v-if="members" class="grid grid-cols-5">
       <member-card
-        v-for="member in members.contents"
+        v-for="member in members"
         :key="member.id"
         :member="member"
       />
@@ -27,7 +27,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, useAsync, useContext } from '@nuxtjs/composition-api'
+import { defineComponent, useContext, useFetch, ref } from '@nuxtjs/composition-api'
 import { teams, members } from '~/types/cms-types'
 import { MicroResponseType } from '~/types/microcms'
 import TeamCard from '~/components/atoms/team-card.vue'
@@ -43,12 +43,16 @@ export default defineComponent({
   },
   setup () {
     const { $microcms } = useContext()
-    const teams = useAsync(() => $microcms.get<MicroResponseType<teams>>({
-      endpoint: 'teams',
-    }))
-    const members = useAsync(() => $microcms.get<MicroResponseType<members>>({
-      endpoint: 'members'
-    }))
+    const teams = ref<teams[]>()
+    useFetch(async () => {
+      const { contents } = await $microcms.get<MicroResponseType<teams>>({ endpoint: 'teams' })
+      teams.value =contents
+    })
+    const members = ref<members[]>()
+    useFetch(async () => {
+      const { contents } = await $microcms.get<MicroResponseType<members>>({ endpoint: 'members' })
+      members.value = contents
+    })
     return {
       teams,
       members,

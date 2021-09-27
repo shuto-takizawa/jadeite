@@ -20,7 +20,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, useAsync, useContext, useMeta } from '@nuxtjs/composition-api'
+import { defineComponent, useContext, useMeta, useFetch, ref } from '@nuxtjs/composition-api'
 import { teams } from '~/types/cms-types'
 import { MicroResponseType } from '~/types/microcms'
 import Card from '~/components/atoms/member-card.vue'
@@ -29,10 +29,11 @@ export default defineComponent({
   head: {},
   watchQuery: ['name'],
   setup () {
-    const { params, $microcms, $log, error } = useContext()
+    const { params, $microcms, error, redirect } = useContext()
     // TODO : meta設定
     const { title } = useMeta()
-    const team = useAsync(async () => {
+    const team = ref<teams>()
+    useFetch(async () => {
       try {
         const { contents } = await $microcms.get<MicroResponseType<teams>>({
           endpoint: 'teams',
@@ -41,17 +42,13 @@ export default defineComponent({
             filters: `name[equals]${params.value.name}`
           }
         })
-        $log.info(contents)
-        if (!contents.length) {
-          throw new Error("404 Not Found");
-
-        }
         title.value = contents[0].name
-        return contents[0]
+        team.value = contents[0]
       } catch (e) {
         error({
           statusCode: 404,
         })
+        if (process.server) redirect(404, '/')
       }
     })
     return {

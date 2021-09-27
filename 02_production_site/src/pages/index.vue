@@ -19,7 +19,7 @@
         <nuxt-link class="link-arrow" to="/news">View all</nuxt-link>
       </div>
       <div v-if="newsItems">
-        <news-list :items='newsItems.contents' :type="'card'" />
+        <news-list :items='newsItems' :type="'card'" />
       </div>
       <div v-else>
         <p>Newsがありません。</p>
@@ -36,12 +36,6 @@
         :href="sponsor.url"
         target="blank"
       >
-      <!-- <a
-        v-for="sponsor in sponsors.contents"
-        :key="sponsor.id"
-        :href="sponsor.url"
-        target="blank"
-      > -->
         <nuxt-img
           :src="sponsor.logo.url"
           :alt="sponsor.name"
@@ -53,7 +47,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, ref, useAsync, useFetch, useContext } from '@nuxtjs/composition-api'
+import { defineComponent, ref, useFetch, useContext } from '@nuxtjs/composition-api'
 import { twitter, twitch, youtube } from '~/utils/font-awesome'
 import { news, sponsors } from '~/types/cms-types'
 import { MicroResponseType } from '~/types/microcms'
@@ -73,22 +67,25 @@ export default defineComponent({
   },
   setup () {
     const { $microcms } = useContext()
-    // const newsItems = useAsync(() => $microcms.get<MicroResponseType<news>>({
-    //   endpoint: 'news',
-    //   queries: {
-    //     limit: 6,
-    //     orders: '-publishedAt'
-    //   }
-    // }))
+    const newsItems = ref<news[]>()
+    useFetch(async () => {
+      const { contents } = await $microcms.get<MicroResponseType<news>>({
+        endpoint: 'news',
+        queries: {
+          limit: 6,
+          orders: '-publishedAt'
+        }
+      })
+      newsItems.value = contents
+    })
     const sponsors = ref()
     useFetch(async () => {
-      const data = await $microcms.get<MicroResponseType<sponsors>>({endpoint: 'sponsors'})
-      sponsors.value = data.contents
+      const { contents } = await $microcms.get<MicroResponseType<sponsors>>({endpoint: 'sponsors'})
+      sponsors.value = contents
     })
-    // const sponsors = useAsync(() => $microcms.get<MicroResponseType<sponsors>>({endpoint: 'sponsors'}))
 
     return {
-      // newsItems,
+      newsItems,
       sponsors,
       twitter,
       twitch,

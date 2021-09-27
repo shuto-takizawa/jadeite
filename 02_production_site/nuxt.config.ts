@@ -71,6 +71,15 @@ const nuxtConfig: NuxtConfig = {
   generate: {
     fallback: true,
   },
+  router: {
+    extendRoutes (routes, resolve) {
+      routes.push({
+        path: '/news/page/:page',
+        component: resolve(__dirname, 'src/pages/news/index.vue'),
+        name: 'page',
+      })
+    }
+  },
   server: {
     host: '0.0.0.0'
   },
