@@ -3,7 +3,7 @@
     <h1 class="page-title">Contact us</h1>
     <p class="text-center">Team Jadeiteへのお問い合わせはこちらから入力ください。</p>
     <validation-observer ref="obs" v-slot='{ handleSubmit, invalid }'>
-      <form class="container max-w-3xl" @submit.prevent="handleSubmit(send)">
+      <form class="container max-w-3xl" @submit.prevent="handleSubmit(sendMail)">
         <div class="grid grid-cols-4">
           <span>お名前</span>
           <text-field
@@ -42,14 +42,12 @@
         </div>
       </form>
     </validation-observer>
-    <button @click='test'>test</button>
   </div>
 </template>
 
 <script lang='ts'>
-import { defineComponent, reactive, toRefs, useContext, } from '@nuxtjs/composition-api'
-import { main } from '~/plugins/firebase'
-import { sendMail, TemplateId } from '~/utils/mail'
+import { defineComponent, reactive, toRefs, useContext, useRouter } from '@nuxtjs/composition-api'
+import { sendContactFormNotice } from '~/utils/mail'
 import TextField from '~/components/atoms/text-field.vue'
 import TextArea from '~/components/atoms/text-area.vue'
 import Btn from '~/components/atoms/button.vue'
@@ -71,49 +69,43 @@ export default defineComponent({
     // TODO : meta設定
   },
   setup () {
-    const { $log, } = useContext()
+    const { $log, error, redirect } = useContext()
+    const router = useRouter()
     const { name, email, content } = toRefs<SendData>(reactive({
       name: '',
       email: '',
       content: '',
     }))
 
-    const send = () => {
+    const sendMail = async () => {
       $log.info('name:', name.value)
       $log.info('email:', email.value)
       $log.info('content:', content.value)
-      sendMail({
-        to: email.value,
-        templateId: TemplateId.contact_form_notice,
-        dynamic_template_data: {
-          name: name.value,
-          email: email.value,
-          content: content.value
-        }
-      })
+      try {
+        const res = await sendContactFormNotice({
+          templateName: 'contact_form_notice',
+          dynamicTemplateData: {
+            name: name.value,
+            email: email.value,
+            content: content.value,
+          }
+        })
+        if (res.data.status === 'success')
+          router.push('/contact-complate')
+      } catch (e) {
+        $log.error(e)
+        error({
+          statusCode: 500,
+        })
+        if (process.server) redirect(500, '/')
+      }
     }
 
-    const test = () => {
-      main()
-      // const send = $fire.functions.httpsCallable('sendMail')
-      // send({
-      //   to: "md.takizawa@gmail.com",
-      //   templateId: 'd-3eb503749f98481bb4725b5e647b378b',
-      //   dynamic_template_data: {
-      //     name: 'テスト太郎',
-      //     email: 'stakizawa@anvil.ne.jp',
-      //     content: 'お問い合わせ内容が入力されます。'
-      //   }
-      // })
-      // .then((res: any) => console.log(res))
-      // .catch((e: any) => console.log(e))
-    }
     return {
       name,
       email,
       content,
-      send,
-      test,
+      sendMail,
     }
   }
 })

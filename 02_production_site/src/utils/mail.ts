@@ -1,29 +1,105 @@
 import { httpsCallable } from 'firebase/functions'
 import { functions } from '~/plugins/firebase'
 
-type TemplateId = 'contact_form_notice' | 'normal'
-export const TemplateId = {
-  'contact_form_notice': 'd-3eb503749f98481bb4725b5e647b378b'
+// ************************
+// テンプレートID関連
+// ************************
+/** お問い合わせフォーム通知 */
+const contactFormNotice = 'contact_form_notice'
+
+/** テンプレート名型定義 */
+type TemplateName = typeof contactFormNotice
+
+/** テンプレート名に紐づくテンプレートID */
+const templateId = {
+  [contactFormNotice]: 'd-3eb503749f98481bb4725b5e647b378b'
 }
-type DynamicTemplateData = {
+
+// ************************************
+// ダイナミックテンプレート用データの型定義
+// ************************************
+/**
+ * 必須項目
+ */
+type RequiredDynamicData = {
   name: string
   email: string
+}
+
+/**
+ * お問い合わせフォーム通知用
+ */
+type DynamicContactFormNoticeData = RequiredDynamicData & {
   content: string
 }
 
-export type SendMailData = {
-  to: string
-  templateId: string
-  dynamic_template_data: DynamicTemplateData
+type DynamicTemplateData = DynamicContactFormNoticeData
+
+// ****************************
+// メール送信処理の型定義
+// ****************************
+/**
+ * お問合せフォーム通知用型定義
+ */
+type ContactFormNoticeData = {
+  templateName: TemplateName
+  dynamicTemplateData: DynamicContactFormNoticeData
 }
 
-export const sendMail = (data: SendMailData) => {
-  const call = httpsCallable<SendMailData>(functions, 'sendMail')
-  call({
+/**
+ * 送信用データの型定義
+ */
+type SendMailData = {
+  to: string
+  templateName: TemplateName
+  dynamicTemplateData?: DynamicTemplateData
+  cc?: string
+  bcc?: string
+}
+
+/**
+ * Cloud Functionリクエストデータの型定義
+ */
+type FunctionsRequestType = {
+  to: string
+  templateId: string
+  dynamic_template_data?: DynamicTemplateData
+  cc?: string
+  bcc?: string
+}
+
+/**
+ * Cloud Functionsレスポンスの型定義
+ */
+type FunctionsResponseType = {
+  status: 'success' | 'error'
+}
+
+// ************************
+// ロジック
+// ************************
+/**
+ * お問い合わせフォームの通知処理
+ * @param data
+ */
+export const sendContactFormNotice = async (data: ContactFormNoticeData) => {
+  // TODO : 本番用に切り替え
+  // const to = 'info@team-jadeite.com'
+  const to = 'md.takizawa@gmail.com'
+  const sendData:SendMailData = { to, ...data}
+  return await sendMail(sendData)
+}
+
+/**
+ * メール送信処理
+ * @param data SendMailData
+ */
+export const sendMail = async (data: SendMailData) => {
+  const call = httpsCallable<FunctionsRequestType, FunctionsResponseType>(functions, 'sendMail')
+  const res = await call({
     to: data.to,
-    templateId: data.templateId,
-    dynamic_template_data: data.dynamic_template_data
+    templateId: templateId[data.templateName],
+    dynamic_template_data: data.dynamicTemplateData
   })
-  .then(res => console.log(res))
-  .catch(e => console.log(e))
+  return res
 }

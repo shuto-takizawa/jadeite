@@ -7,6 +7,7 @@ exports.sendMail = https.onCall(async (data) => {
     const msg = {
       to: data.to,
       from: 'no-reply@team-jadeite.com',
+      // TODO : 下記項目は必要になったときに設定する
       // cc: data.cc || '',
       // bcc: data.bcc || '',
       // replyTo: data.replyTo || '',
@@ -15,8 +16,10 @@ exports.sendMail = https.onCall(async (data) => {
     }
     try {
       await mail.send(msg)
+      return { status: 'success' }
     } catch (error) {
       console.error(error)
+      throw error
     }
   }
 )
