@@ -16,7 +16,9 @@ exports.sendMail = https.onCall(async (data) => {
     }
     try {
       await mail.send(msg)
-      return { status: 'success' }
+      return {
+        status: 'success',
+      }
     } catch (error) {
       console.error(error)
       throw error
