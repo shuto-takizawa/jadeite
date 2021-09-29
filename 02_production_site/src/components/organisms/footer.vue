@@ -1,9 +1,11 @@
 <template>
   <footer class="mt-48 p-8">
-    <div class="grid grid-cols-3 px-16">
-      <logo :width="200" />
-      <div class="grid grid-cols-2">
-        <div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 sm:px-16">
+      <div class="mb-6">
+        <logo class="w-36 sm:w-48" />
+      </div>
+      <div class="grid grid-cols-3 sm:grid-cols-2 mb-6">
+        <div class="text-right sm:text-left">
           <nuxt-link class="link" to="/about">About us</nuxt-link>
           <nuxt-link class="link" to="/news">News</nuxt-link>
           <nuxt-link class="link" to="/member">Member</nuxt-link>
@@ -16,7 +18,7 @@
         </div>
       </div>
       <div>
-        <p class="mb-2 font-semibold">Follow us.</p>
+        <p class="mb-2 text-sm sm:text-base font-semibold">Follow us.</p>
         <div>
           <a href="https://twitter.com/Team_Jadeite" target="blank"><fa class="icon" :icon='twitter' /></a>
           <a href="https://www.youtube.com/channel/UCZnHIffwda5od9Tmliopb5Q" target="blank"><fa class="icon" :icon='youtube' /></a>
@@ -26,7 +28,7 @@
     </div>
     <div class="divider" />
     <div class="text-center">
-      <small class="tracking-wider">Copyright© 2021<a class="underline" href="https://anvil.ne.jp" target="blank">Anvil Co.Ltd.</a> All rights reserved.</small>
+      <small class="text-xs sm:text-base tracking-wider">Copyright© 2021<a class="underline" href="https://anvil.ne.jp" target="blank">Anvil Co.Ltd.</a> All rights reserved.</small>
     </div>
   </footer>
 </template>
@@ -57,10 +59,10 @@ export default defineComponent({
 }
 
 .link {
-  @apply table mb-2 font-semibold;
+  @apply table mb-2 text-sm sm:text-base font-semibold;
 }
 
 .icon {
-  @apply mr-4 text-3xl;
+  @apply mr-4 text-xl sm:text-3xl;
 }
 </style>

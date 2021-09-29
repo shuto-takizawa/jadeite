@@ -4,7 +4,7 @@
       <!-- TODO : カルーセル -->
       <!-- https://howhere.jp/ -->
       <img class="hero-img" src="/hero1.jpg" alt="hero">
-      <div>
+      <div class="hidden sm:block">
         <a href="https://twitter.com/Team_Jadeite" target="blank"><fa class="block text-2xl" :icon='twitter' /></a>
         <a href="https://www.youtube.com/channel/UCZnHIffwda5od9Tmliopb5Q" target="blank"><fa class="block text-2xl" :icon='youtube' /></a>
         <a href="" target="blank"><fa class="block text-2xl" :icon='twitch' /></a>

@@ -1,5 +1,6 @@
 <template>
   <img
+    class="inline-block"
     src="~/assets/image/logo.svg"
     alt="logo"
     :width="width"
