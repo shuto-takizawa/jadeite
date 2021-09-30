@@ -1,9 +1,12 @@
 <template>
   <article v-if="news">
     <p class="date">{{ $moment(news.publishedAt).format('YYYY/MM/DD') }}</p>
-    <h1>{{ news.title }}</h1>
-    <tag v-for="tag in news.tags" :key="tag.id" :tag="tag" />
-    <div v-html="news.content" />
+    <h1 class="title">{{ news.title }}</h1>
+    <div class="tags">
+      <tag v-for="tag in news.tags" :key="tag.id" :tag="tag" />
+    </div>
+    <nuxt-img class="thumbnail" :src="news.thumbnail.url" :alt="news.title" />
+    <div class="content" v-html="news.content" />
   </article>
 </template>
 
@@ -47,6 +50,28 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .date {
-  @apply my-4 text-center;
+  @apply my-2 sm:my-4 text-center text-base text-gray-400 font-light tracking-wide;
+}
+
+.title {
+  @apply mb-5 text-center text-2xl font-semibold;
+}
+
+.tags {
+  @apply mb-8 sm:mb-10 text-center;
+}
+
+.thumbnail {
+  @apply mb-8 sm:mb-10;
+}
+
+.content::v-deep {
+  h1 {
+    @apply mb-4 text-xl font-semibold;
+  }
+
+  p {
+    @apply text-sm sm:text-base;
+  }
 }
 </style>

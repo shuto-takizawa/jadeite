@@ -22,7 +22,7 @@ body {
 // 各ページ共通スタイル
 // ************************
 .page-title {
-  @apply relative py-40 text-4xl font-semibold;
+  @apply relative py-14 sm:py-40 text-2xl sm:text-4xl font-semibold;
 
   &::after {
     @apply absolute top-1/2 ml-8 w-16 bg-site-black;
@@ -33,7 +33,7 @@ body {
 }
 
 .page-sub-title {
-  @apply my-8 text-2xl;
+  @apply my-4 sm:my-8 text-lg sm:text-2xl;
 }
 
 // ************************

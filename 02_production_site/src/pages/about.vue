@@ -1,10 +1,10 @@
 <template>
   <div>
     <h1 class="page-title">About us</h1>
-    <h2 class="mb-40 text-center text-3xl font-black">Believe in your glory.</h2>
+    <h2 class="mb-14 sm:mb-40 text-center text-xl sm:text-3xl font-black">Believe in your glory.</h2>
     <section>
       <h3 class="page-sub-title">Jadeite Concept</h3>
-      <ol class="px-8">
+      <ol class="px-4 sm:px-8">
         <li>e-Sports業界のみならず、他業界でも通用する「社会性・人間性」を持った人材に育成します。</li>
         <li>e-Sports普及のため、全力で選手、関係者の生活をサポートします。</li>
         <li>人種、宗教、性別に関わらず幅広い人材を登用します。</li>
@@ -31,7 +31,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 ol {
   li {
-    @apply mb-2 text-lg list-decimal list-inside;
+    @apply mb-2 text-sm sm:text-lg list-decimal list-inside;
   }
 }
 </style>

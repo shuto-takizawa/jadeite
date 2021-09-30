@@ -1,10 +1,10 @@
 <template>
-  <aside class="root p-10 block sm:hidden" :class="{active:drawer}">
+  <aside class="root" :class="{active:drawer}">
     <div class="my-10">
-      <nuxt-link class="link" to="/news">News</nuxt-link>
-      <nuxt-link class="link" to="/member">Member</nuxt-link>
-      <nuxt-link class="link" to="/about">About</nuxt-link>
-      <nuxt-link class="link" to="/sponsor">Sponsor</nuxt-link>
+      <nuxt-link class="link" @click.native="hide" to="/news">News</nuxt-link>
+      <nuxt-link class="link" @click.native="hide" to="/member">Member</nuxt-link>
+      <nuxt-link class="link" @click.native="hide" to="/about">About</nuxt-link>
+      <nuxt-link class="link" @click.native="hide" to="/sponsor">Sponsor</nuxt-link>
     </div>
     <div class="divider" />
     <div class="mb-10">
@@ -28,8 +28,13 @@ export default defineComponent({
       default: false,
     }
   },
-  setup () {
+  setup (_, { emit }) {
+    const hide = () => {
+      console.log('hide')
+      emit('hideSidebar')
+    }
     return {
+      hide,
       twitter,
       twitch,
       youtube,
@@ -40,7 +45,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .root {
-  @apply fixed top-0 -right-full w-screen h-screen block sm:hidden bg-white transition-all duration-500 ease-in-out;
+  @apply fixed top-0 -right-full w-screen h-screen block sm:hidden p-10 bg-white transition-all duration-500 ease-in-out;
 
   &.active {
     @apply right-0;

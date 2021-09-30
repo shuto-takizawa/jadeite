@@ -3,7 +3,7 @@
     <h1 class="page-title">Privacy policy</h1>
     <section>
       <h3 class="page-sub-title">情報セキュリティに関する方針</h3>
-      <div class="px-8">
+      <div class="px-4 sm:px-8">
         <p>株式会社アンヴィルは、お客様にとって特別なものを創ることを社是とし、当社の製品及び、サービスに係るすべての人々からの信頼と安心を寄せられる会社でありたいと考え、お客様より頂いた情報及び当社の情報に対して以下の方針において情報保護に努める事を宣言します。</p>
         <h4>行動指針</h4>
         <ol>
@@ -22,7 +22,7 @@
     </section>
     <section>
       <h3 class="page-sub-title">個人情報取り扱いに関する方針</h3>
-      <div class="px-8">
+      <div class="px-4 sm:px-8">
         <ol>
           <li>
             個人情報とは<br>
@@ -94,25 +94,25 @@ section {
 }
 
 h4 {
-  @apply mt-8 mb-4 text-xl font-semibold;
+  @apply mt-4 sm:mt-8 mb-2 sm:mb-4 text-base sm:text-xl font-semibold;
 }
 
 p {
-  @apply mb-4 leading-8;
+  @apply mb-2 sm:mb-4 leading-6 sm:leading-8 text-sm sm:text-base;
 }
 
 ol,
 ul {
-  @apply mt-2 px-4;
+  @apply mt-2 px-4 text-sm sm:text-base;
 
   li {
-    @apply leading-7;
+    @apply leading-6 sm:leading-7;
   }
 }
 
 ol {
   > li {
-    @apply mb-8 list-decimal;
+    @apply mb-4 sm:mb-8 list-decimal;
   }
 }
 

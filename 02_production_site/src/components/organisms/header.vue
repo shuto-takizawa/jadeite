@@ -1,21 +1,23 @@
 <template>
-  <header class="flex items-center justify-between fixed top-0 px-4 sm:px-8 py-4 h-16 w-full bg-white">
-    <nuxt-link to="/">
-      <logo class="w-24 sm:w-32" />
-    </nuxt-link>
-    <div class="hidden sm:block">
-      <nuxt-link class="link" to="/news">News</nuxt-link>
-      <nuxt-link class="link" to="/member">Member</nuxt-link>
-      <nuxt-link class="link" to="/about">About</nuxt-link>
-      <nuxt-link class="link" to="/sponsor">Sponsor</nuxt-link>
-    </div>
+  <div>
+    <header class="flex items-center justify-between fixed top-0 px-4 sm:px-8 py-4 h-16 w-full bg-white z-10">
+      <nuxt-link to="/">
+        <logo class="w-24 sm:w-32" />
+      </nuxt-link>
+      <div class="hidden sm:block">
+        <nuxt-link class="link" to="/news">News</nuxt-link>
+        <nuxt-link class="link" to="/member">Member</nuxt-link>
+        <nuxt-link class="link" to="/about">About</nuxt-link>
+        <nuxt-link class="link" to="/sponsor">Sponsor</nuxt-link>
+      </div>
 
-    <!-- サイドバー -->
-    <div class="block sm:hidden z-10">
-      <hamburger-btn @click.native="drawer = !drawer" :drawer="drawer" />
-    </div>
-    <sidebar :drawer="drawer"/>
-  </header>
+      <!-- サイドバー -->
+      <div class="block sm:hidden z-10">
+        <hamburger-btn @click.native="toggleDrawe" :drawer="drawer" />
+      </div>
+      <sidebar :drawer="drawer" @hideSidebar="toggleDrawe" />
+    </header>
+  </div>
 </template>
 
 <script lang='ts'>
@@ -31,8 +33,14 @@ export default defineComponent({
   },
   setup () {
     const drawer = ref<boolean>(false)
+    const toggleDrawe = () => {
+      console.log('toggle')
+      drawer.value = !drawer.value
+    }
+
     return {
-      drawer
+      drawer,
+      toggleDrawe,
     }
   }
 })

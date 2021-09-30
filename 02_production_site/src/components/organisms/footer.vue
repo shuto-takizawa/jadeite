@@ -1,10 +1,10 @@
 <template>
-  <footer class="mt-48 p-8">
-    <div class="grid grid-cols-1 sm:grid-cols-3 sm:px-16">
+  <footer class="mt-20 sm:mt-48 p-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 lg:px-16">
       <div class="mb-6">
-        <logo class="w-36 sm:w-48" />
+        <logo class="w-28 sm:w-48" />
       </div>
-      <div class="grid grid-cols-3 sm:grid-cols-2 mb-6">
+      <div class="grid grid-cols-2 mb-6">
         <div class="text-right sm:text-left">
           <nuxt-link class="link" to="/about">About us</nuxt-link>
           <nuxt-link class="link" to="/news">News</nuxt-link>
