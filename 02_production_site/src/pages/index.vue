@@ -17,7 +17,7 @@
     <!-- ニュース一覧 -->
     <section class="container px-4 sm:px-8">
       <div class="flex items-center justify-between mb-4">
-        <h1 class="text-3xl font-semibold">News</h1>
+        <h1 class="text-xl sm:text-3xl font-semibold">News</h1>
         <nuxt-link class="link-arrow" to="/news">
           <span class="arrow left">
             <span  class="shaft" />
@@ -124,6 +124,14 @@ export default defineComponent({
   $white: #eaeaea;
   $gray: #999;
 
+  --text-arrow-space: 10px;
+  --shaft-width: 30px;
+
+  @include mq(sm) {
+    --text-arrow-space: 16px;
+    --shaft-width: 64px;
+  }
+
   $text-arrow-space: 16px;
   $shaft-width: 64px;
   $shaft-thickness: 1px;
@@ -137,7 +145,7 @@ export default defineComponent({
   transition: all 0.2s;
 
   .arrow {
-    width: $shaft-width;
+    width: var(--shaft-width);
     transition: all 0.2s;
 
     > .shaft {
@@ -188,7 +196,7 @@ export default defineComponent({
       top: 3px;
 
       > .shaft {
-        width: $shaft-width;
+        width: var(--shaft-width);
         transition-delay: 0.2s;
 
         &::before,
@@ -210,7 +218,9 @@ export default defineComponent({
     transition: all 0.2s;
 
     > .arrow-text {
-      margin: 0 $text-arrow-space 0 0;
+      @apply text-sm sm:text-base;
+
+      margin: 0 var(--text-arrow-space) 0 0;
       line-height: 1;
     }
 
@@ -221,7 +231,7 @@ export default defineComponent({
     color: $white;
 
     > .arrow.left > .shaft {
-      width: $shaft-width;
+      width: var(--shaft-width);
       transition-delay: 0.1s;
       background-color: $white;
 
@@ -237,7 +247,7 @@ export default defineComponent({
     }
 
     > .arrow-main {
-      transform: translateX($shaft-width + $text-arrow-space);
+      transform: translateX(var(--shaft-width) + var(--text-arrow-space));
 
       > .arrow.right > .shaft {
         width: 0;

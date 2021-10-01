@@ -1,0 +1,10 @@
+// ************************
+// Mixin定義用のファイルです
+// ************************
+
+/** メディアクエリ用Mixin */
+@mixin mq($breakpoint: md) {
+  @media screen and #{inspect(map-get($breakpoints, $breakpoint))} {
+    @content;
+  }
+}

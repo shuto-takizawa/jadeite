@@ -1,7 +1,17 @@
-// **********************
-// 変数定義
-// **********************
+// ************************
+// 変数定義用のファイルです
+// ************************
+
 $header-h: 4rem;
 $footer-h: 4rem;
 $site-black: #292929;
 $site-accent: #2a928a;
+
+/** TailwindCSSのブレークポイントを踏襲 */
+$breakpoints: (
+  'sm': (min-width: 640px),
+  'md': (min-width: 768px),
+  'lg': (min-width: 1024px),
+  'xl': (min-width: 1280px),
+  'xxl': (min-width: 1536px)
+) !default;

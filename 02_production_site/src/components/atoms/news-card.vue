@@ -4,7 +4,7 @@
       <nuxt-img :src="news.thumbnail.url" :alt="news.title" />
       <h3>{{ news.title }}</h3>
       <p>{{ $moment(news.publishedAt).format('YYYY/MM/DD') }}</p>
-      <tag v-for="tag in news.tags" :key="tag.id" :tag="tag" />
+      <tag v-for="tag in news.tags" :key="tag.id" :tag="tag" small />
     </div>
   </nuxt-link>
 </template>

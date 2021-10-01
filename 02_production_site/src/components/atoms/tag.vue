@@ -1,6 +1,6 @@
 <template>
-  <span class="tag">
-    {{ tag.name }}
+  <span class="tag" :class="{small:small}">
+    # {{ tag.name }}
   </span>
 </template>
 
@@ -29,6 +29,10 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .tag {
-  @apply mr-1 p-1 text-white bg-site-accent rounded-sm;
+  @apply mx-2 px-2 sm:px-3 py-1 sm:py-2 text-center text-sm text-site-accent border border-site-accent rounded-3xl shadow;
+
+  &.small {
+    @apply mx-1 px-2 py-1 text-xs;
+  }
 }
 </style>

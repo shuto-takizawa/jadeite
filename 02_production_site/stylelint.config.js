@@ -8,5 +8,8 @@ module.exports = {
     'selector-pseudo-element-no-unknown': [true, {
       ignorePseudoElements: ['v-deep'],
     }],
+    "at-rule-no-unknown": [true, {
+      ignoreAtRules: ["include","mixin","each","extend"]
+    }],
   }
 }

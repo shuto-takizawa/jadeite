@@ -2,7 +2,9 @@
   <footer class="mt-20 sm:mt-48 p-8">
     <div class="grid grid-cols-1 lg:grid-cols-3 lg:px-16">
       <div class="mb-6">
-        <logo class="w-28 sm:w-48" />
+        <nuxt-link to="/">
+          <logo class="w-28 sm:w-48" />
+        </nuxt-link>
       </div>
       <div class="grid grid-cols-2 mb-6">
         <div class="text-right sm:text-left">

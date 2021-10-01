@@ -13,9 +13,9 @@
 
       <!-- サイドバー -->
       <div class="block sm:hidden z-10">
-        <hamburger-btn @click.native="toggleDrawe" :drawer="drawer" />
+        <hamburger-btn @click.native="toggleDrawer" :drawer="drawer" />
       </div>
-      <sidebar :drawer="drawer" @hideSidebar="toggleDrawe" />
+      <sidebar :drawer="drawer" @hideSidebar="toggleDrawer" />
     </header>
   </div>
 </template>
@@ -33,14 +33,25 @@ export default defineComponent({
   },
   setup () {
     const drawer = ref<boolean>(false)
-    const toggleDrawe = () => {
-      console.log('toggle')
+
+    /** スクロール制御メソッド */
+    const noScroll = (e: TouchEvent) => e.preventDefault()
+
+    /**
+     * サイドバー表示切り替え処理
+     */
+    const toggleDrawer = () => {
       drawer.value = !drawer.value
+      if (drawer.value) {
+        document.addEventListener('touchmove', noScroll, { passive: false })
+      } else {
+        document.removeEventListener('touchmove', noScroll)
+      }
     }
 
     return {
       drawer,
-      toggleDrawe,
+      toggleDrawer,
     }
   }
 })

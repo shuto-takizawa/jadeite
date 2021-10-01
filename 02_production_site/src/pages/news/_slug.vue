@@ -54,7 +54,7 @@ export default defineComponent({
 }
 
 .title {
-  @apply mb-5 text-center text-2xl font-semibold;
+  @apply mb-4 sm:mb-6 text-center text-2xl sm:text-3xl font-semibold;
 }
 
 .tags {
@@ -62,7 +62,7 @@ export default defineComponent({
 }
 
 .thumbnail {
-  @apply mb-8 sm:mb-10;
+  @apply mb-8 sm:mb-10 w-full;
 }
 
 .content::v-deep {

@@ -29,10 +29,8 @@ export default defineComponent({
     }
   },
   setup (_, { emit }) {
-    const hide = () => {
-      console.log('hide')
-      emit('hideSidebar')
-    }
+    const hide = () => emit('hideSidebar')
+
     return {
       hide,
       twitter,
