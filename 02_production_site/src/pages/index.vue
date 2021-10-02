@@ -41,13 +41,14 @@
     <div class="my-20 short-divider" />
 
     <!-- スポンサー一覧 -->
-    <section class="container px-4 sm:px-8 max-w-5xl">
-      <div v-if="sponsors" class="grid grid-cols-4">
+    <section class="container px-8 max-w-5xl">
+      <div v-if="sponsors" class="grid grid-cols-2 lg:grid-cols-4">
         <a
           v-for="sponsor in sponsors"
           :key="sponsor.id"
           :href="sponsor.url"
           target="blank"
+          class="p-2"
         >
           <nuxt-img
             :src="sponsor.logo.url"
@@ -247,7 +248,7 @@ export default defineComponent({
     }
 
     > .arrow-main {
-      transform: translateX(var(--shaft-width) + var(--text-arrow-space));
+      transform: translateX(calc(var(--shaft-width) + var(--text-arrow-space)));
 
       > .arrow.right > .shaft {
         width: 0;

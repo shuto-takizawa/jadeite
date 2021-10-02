@@ -35,11 +35,11 @@ export default defineComponent({
 
 // リストスタイル
 .list {
-  @apply grid-cols-1;
+  @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-1;
 }
 
 // カードスタイル
 .card {
-  @apply grid-cols-3;
+  @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
 }
 </style>

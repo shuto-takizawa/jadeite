@@ -1,10 +1,10 @@
 <template>
-  <div class="container">
+  <div>
     <!-- チーム一覧 -->
-    <section>
-      <h2 class="pt-32 text-3xl font-semibold text-center">Teams</h2>
+    <section class="pt-20 sm:pt-32">
+      <h2 class="text-3xl font-semibold text-center">Teams</h2>
       <div class="my-10 short-divider" />
-      <div v-if="teams" class="grid grid-cols-3">
+      <div v-if="teams" class="grid grid-cols-2 sm:grid-cols-3">
         <team-card
           v-for="team in teams"
           :key="team.id"
@@ -13,10 +13,10 @@
       </div>
     </section>
 
-    <div class="my-20 short-divider" />
+    <div class="my-10 sm:my-20 short-divider" />
 
     <!-- メンバー一覧 -->
-    <section v-if="members" class="grid grid-cols-5">
+    <section v-if="members" class="grid grid-cols-3 sm:grid-cols-5">
       <member-card
         v-for="member in members"
         :key="member.id"

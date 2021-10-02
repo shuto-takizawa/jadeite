@@ -1,12 +1,14 @@
 <template>
-  <nuxt-link :to="`/news/${news.id}`" class="mb-5 flex">
-    <div class="img">
-      <img :src="news.thumbnail.url" :alt="news.title">
-    </div>
-    <div>
-      <p>{{ news.publishedAt }}</p>
-      <h3>{{ news.title }}</h3>
-      <tag v-for="tag in news.tags" :key="tag.id" :tag="tag" />
+  <nuxt-link :to="`/news/${news.id}`" class="c-card">
+    <figure class="lg:h-full">
+      <nuxt-img :src="news.thumbnail.url" :alt="news.title" class="h-full" />
+    </figure>
+    <div class="card-body">
+      <p class="card-sub-text">{{ $moment(news.publishedAt).format('YYYY/MM/DD') }}</p>
+      <h3 class="card-title">{{ news.title }}</h3>
+      <div class="card-actions">
+        <tag v-for="tag in news.tags" :key="tag.id" :tag="tag" small />
+      </div>
     </div>
   </nuxt-link>
 </template>
@@ -35,7 +37,29 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.img {
-  flex-basis: 20%;
+.c-card {
+  @include card-hover();
+
+  @apply lg:flex m-4 lg:h-40 border border-gray-200 rounded-xl overflow-hidden shadow;
+
+  .card-body {
+    @apply px-6 py-4;
+
+    .card-title {
+      @apply text-xl font-semibold text-site-black;
+    }
+
+    .card-sub-text {
+      @apply mb-2 text-sm text-gray-400;
+    }
+
+    .card-actions {
+      @apply flex items-center mt-4;
+
+      & > * {
+        @apply mx-0 mr-2;
+      }
+    }
+  }
 }
 </style>

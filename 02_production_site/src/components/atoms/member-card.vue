@@ -1,7 +1,14 @@
 <template>
-  <nuxt-link :to="`/member/${member.name}`">
-    <nuxt-img :src="member.icon.url" :alt="member.name" format="webp" />
-    <span>{{ member.name }}</span>
+  <nuxt-link :to="`/member/${member.name}`" class="c-card">
+    <figure class="mb-2 rounded-3xl overflow-hidden shadow-lg">
+      <nuxt-img
+        class="transition-all duration-500 ease-in-out transform"
+        :src="member.icon.url"
+        :alt="member.name"
+        format="webp"
+      />
+    </figure>
+    <p class="text-center text-base font-semibold">{{ member.name }}</p>
   </nuxt-link>
 </template>
 
@@ -15,11 +22,17 @@ export default defineComponent({
       required: true,
     }
   },
-  setup () {
-
-    return {
-
-    }
-  }
 })
 </script>
+
+<style lang="scss" scoped>
+.c-card {
+  @apply m-2 transition-all duration-500 ease-in-out transform hover:-translate-y-1;
+
+  &:hover {
+    figure > img {
+      @apply scale-110;
+    }
+  }
+}
+</style>

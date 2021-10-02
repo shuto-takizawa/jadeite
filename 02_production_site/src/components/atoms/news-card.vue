@@ -1,10 +1,14 @@
 <template>
-  <nuxt-link :to="`/news/${news.id}`">
-    <div class="mb-4 p-2 rounded-md overflow-hidden">
+  <nuxt-link :to="`/news/${news.id}`" class="c-card">
+    <figure>
       <nuxt-img :src="news.thumbnail.url" :alt="news.title" />
-      <h3>{{ news.title }}</h3>
-      <p>{{ $moment(news.publishedAt).format('YYYY/MM/DD') }}</p>
-      <tag v-for="tag in news.tags" :key="tag.id" :tag="tag" small />
+    </figure>
+    <div class="card-body">
+      <h3 class="card-title">{{ news.title }}</h3>
+      <p class="card-sub-text">{{ $moment(news.publishedAt).format('YYYY/MM/DD') }}</p>
+      <div class="card-actions">
+        <tag v-for="tag in news.tags" :key="tag.id" :tag="tag" small />
+      </div>
     </div>
   </nuxt-link>
 </template>
@@ -25,3 +29,31 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss" scoped>
+.c-card {
+  @include card-hover();
+
+  @apply m-4 border border-gray-200 rounded-xl overflow-hidden shadow;
+
+  .card-body {
+    @apply px-6 py-4;
+
+    .card-title {
+      @apply mb-6 text-xl font-semibold text-site-black;
+    }
+
+    .card-sub-text {
+      @apply mb-2 text-sm text-gray-400;
+    }
+
+    .card-actions {
+      @apply flex items-center mt-2;
+
+      & > * {
+        @apply mx-0 mr-2;
+      }
+    }
+  }
+}
+</style>

@@ -22,7 +22,7 @@ body {
 // 各ページ共通スタイル
 // ************************
 .page-title {
-  @apply relative py-14 sm:py-40 text-2xl sm:text-4xl font-semibold;
+  @apply relative py-14 sm:py-20 md:py-40 text-2xl sm:text-4xl font-semibold;
 
   &::after {
     @apply absolute top-1/2 ml-8 w-16 bg-site-black;
@@ -42,15 +42,15 @@ body {
 
 /** Twitter */
 [data-icon='twitter'] {
-  @apply text-blue-400;
+  @apply text-blue-400 transition-colors duration-300 ease-in-out hover:text-blue-200;
 }
 
 /** Youtube */
 [data-icon='youtube'] {
-  @apply text-red-500;
+  @apply text-red-500 transition-colors duration-300 ease-in-out hover:text-red-200;
 }
 
 /** Twitch */
 [data-icon='twitch'] {
-  @apply text-purple-500;
+  @apply text-purple-500 transition-colors duration-300 ease-in-out hover:text-purple-200;
 }

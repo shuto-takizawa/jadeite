@@ -73,5 +73,13 @@ export default defineComponent({
   p {
     @apply text-sm sm:text-base;
   }
+
+  img {
+    @apply mx-auto;
+  }
+
+  a {
+    @apply underline transition-colors duration-300 ease-in-out hover:text-gray-400;
+  }
 }
 </style>

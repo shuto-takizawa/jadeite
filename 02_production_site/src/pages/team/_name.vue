@@ -1,7 +1,7 @@
 <template>
   <div v-if="team">
     <h1 class="page-title">{{ team.name }}</h1>
-    <div class="grid grid-cols-4">
+    <div class="grid grid-cols-2 sm:grid-cols-4">
       <card
         v-for="member in team.members"
         :key="member.id"
@@ -10,11 +10,12 @@
     </div>
     <h3 class="page-sub-title">Team Result</h3>
     <div
+      class="flex mb-2"
       v-for="result in team.battle_record"
       :key="result.id"
     >
-      <span>{{ $moment(result.result_data).format('YYYY/MM/DD') }}</span>
-      <span>{{ result.result_content }}</span>
+      <span class="text-sm sm:text-base">{{ $moment(result.result_data).format('YYYY/MM/DD') }}</span>
+      <span class="px-2 text-sm sm:text-base">{{ result.result_content }}</span>
     </div>
   </div>
 </template>
