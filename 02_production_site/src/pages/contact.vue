@@ -1,43 +1,47 @@
 <template>
   <div>
     <h1 class="page-title">Contact us</h1>
-    <p class="text-center">Team Jadeiteへのお問い合わせはこちらから入力ください。</p>
+    <p class="mb-4 text-center text-base sm:text-lg font-semibold">Team Jadeiteへのお問い合わせはこちらから入力ください。</p>
     <validation-observer ref="obs" v-slot='{ handleSubmit, invalid }'>
-      <form class="container max-w-3xl" @submit.prevent="handleSubmit(sendMail)">
-        <div class="grid grid-cols-4">
-          <span>お名前</span>
+      <form class="container max-w-3xl px-6 py-4 bg-gray-100 rounded-md" @submit.prevent="handleSubmit(sendMail)">
+        <div class="row">
+          <p class="label">お名前<span class="required">必須</span></p>
           <text-field
             v-model="name"
-            class="col-span-3"
+            class="field"
             type="text"
             name="お名前"
             rules="required"
+            placeholder="Name"
           />
         </div>
-        <div class="grid grid-cols-4">
-          <span>メール</span>
+        <div class="row">
+          <p class="label">メール<span class="required">必須</span></p>
           <text-field
             v-model="email"
-            class="col-span-3"
+            class="field"
             type="email"
             name="メールアドレス"
             rules="required|email"
+            placeholder="E-Mail"
           />
         </div>
-        <div class="grid grid-cols-4">
-          <span>内容</span>
+        <div class="row">
+          <p class="label">内容<span class="required">必須</span></p>
           <text-area
             v-model="content"
+            class="area"
             name="問い合わせ内容"
             rules="required"
+            placeholder="Content"
           />
         </div>
-        <div>
+        <div class="text-center mt-8">
           <btn
             type="submit"
             :disabled="invalid"
           >
-            submit
+            送信
           </btn>
         </div>
       </form>
@@ -110,3 +114,23 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.row {
+  @apply my-6 grid grid-cols-1 sm:grid-cols-4;
+
+  .label {
+    @apply py-2 font-semibold;
+
+    .required {
+      @apply ml-2 px-2 text-sm text-white bg-site-accent shadow-sm rounded;
+    }
+  }
+
+  .field,
+  .area {
+    @apply col-span-3;
+  }
+}
+
+</style>

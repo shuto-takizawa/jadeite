@@ -21,7 +21,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, ref } from '@nuxtjs/composition-api'
+import { defineComponent, onMounted, ref, watch, onUnmounted } from '@nuxtjs/composition-api'
 import Logo from '~/components/atoms/logo.vue'
 import Sidebar from '~/components/organisms/sidebar.vue'
 import HamburgerBtn from '~/components/atoms/hamburger-btn.vue'
@@ -33,21 +33,21 @@ export default defineComponent({
   },
   setup () {
     const drawer = ref<boolean>(false)
+    /**
+     * サイドバー表示切り替え処理
+     */
+    const toggleDrawer = () => drawer.value = !drawer.value
 
     /** スクロール制御メソッド */
     const noScroll = (e: TouchEvent) => e.preventDefault()
 
-    /**
-     * サイドバー表示切り替え処理
-     */
-    const toggleDrawer = () => {
-      drawer.value = !drawer.value
-      if (drawer.value) {
+    watch(drawer, value => {
+      if (value)
         document.addEventListener('touchmove', noScroll, { passive: false })
-      } else {
+      else
         document.removeEventListener('touchmove', noScroll)
-      }
-    }
+    })
+    onUnmounted(() => document.removeEventListener('touchmove', noScroll))
 
     return {
       drawer,

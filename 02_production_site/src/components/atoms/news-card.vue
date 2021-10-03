@@ -40,7 +40,7 @@ export default defineComponent({
     @apply px-6 py-4;
 
     .card-title {
-      @apply mb-6 text-xl font-semibold text-site-black;
+      @apply mb-6 text-xl font-semibold text-site-black break-all;
     }
 
     .card-sub-text {

@@ -54,10 +54,10 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .input {
-  @apply border-2;
+  @apply block w-full px-4 py-2 text-gray-700 placeholder-gray-400 shadow-sm border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-site-accent;
 }
 
 .error {
-  @apply text-red-400;
+  @apply mt-2 text-sm text-red-400 font-semibold;
 }
 </style>

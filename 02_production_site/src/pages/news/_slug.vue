@@ -50,11 +50,11 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .date {
-  @apply my-2 sm:my-4 text-center text-base text-gray-400 font-light tracking-wide;
+  @apply my-2 sm:my-4 text-center text-sm sm:text-base text-gray-400 font-light tracking-wide;
 }
 
 .title {
-  @apply mb-4 sm:mb-6 text-center text-2xl sm:text-3xl font-semibold;
+  @apply mb-4 sm:mb-6 text-center text-2xl sm:text-3xl font-semibold break-all;
 }
 
 .tags {
@@ -71,7 +71,7 @@ export default defineComponent({
   }
 
   p {
-    @apply text-sm sm:text-base;
+    @apply text-base;
   }
 
   img {
