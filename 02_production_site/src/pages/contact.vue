@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="page-title">Contact us</h1>
-    <p class="mb-4 text-center text-base sm:text-lg font-semibold">Team Jadeiteへのお問い合わせはこちらから入力ください。</p>
+    <p class="mb-6 text-center text-base sm:text-lg font-semibold">Team Jadeiteへのお問い合わせは<br class="block sm:hidden">こちらから入力ください。</p>
     <validation-observer ref="obs" v-slot='{ handleSubmit, invalid }'>
       <form class="container max-w-3xl px-6 py-4 bg-gray-100 rounded-md" @submit.prevent="handleSubmit(sendMail)">
         <div class="row">
