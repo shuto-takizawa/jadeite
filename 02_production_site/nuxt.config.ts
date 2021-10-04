@@ -1,5 +1,12 @@
 import { NuxtConfig } from '@nuxt/types'
 
+// Path
+const baseUrl = process.env.BASE_URL || 'http://localhost:3000'
+
+// Meta
+const siteName = 'Jadeite'
+const siteDesc = '2021年9月に設立致しました、Pro Gaming Team 「Jadeite」のオフィシャルサイトです。'
+
 const nuxtConfig: NuxtConfig = {
   srcDir: 'src/',
   // Target: https://go.nuxtjs.dev/config-target
@@ -7,20 +14,31 @@ const nuxtConfig: NuxtConfig = {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Jadeite',
-    titleTemplate: '%s | Jadeite',
+    title: siteName,
+    titleTemplate: `%s | ${siteName}`,
     htmlAttrs: {
-      lang: 'ja'
+      lang: 'ja',
+      prefix: 'og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: 'format-detection', content: 'telephone=no' },
+      { hid: 'description', name: 'description', content: siteDesc },
+      { hid: 'og:site_name', property: 'og:site_name', content: siteName },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      { hid: 'og:url', property: 'og:url', content: baseUrl },
+      { hid: 'og:title', property: 'og:title', content: siteName },
+      { hid: 'og:description', property: 'og:description', content: siteDesc },
+      { hid: 'og:image', property: 'og:image', content: `${baseUrl}/ogp-image.webp` },
+      { hid: 'og:locale', property: 'og:locale', content: 'js_JP' },
+      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:site', content: '@Team_jadeite' },
+      { name: 'fb:app_id', content: '522776505455992' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      // TODO : apple-icon
+      { rel: 'apple-touch-icon', sizes: '180×180', href: 'apple-touch-icon.png' }
     ]
   },
 
@@ -38,6 +56,7 @@ const nuxtConfig: NuxtConfig = {
     '~/plugins/logger',
     '~/plugins/validate',
     '~/plugins/firebase',
+    '~/plugins/utils',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -62,6 +81,7 @@ const nuxtConfig: NuxtConfig = {
   modules: [
     '@nuxtjs/style-resources',
     '@nuxtjs/moment',
+    '@nuxtjs/google-gtag',
   ],
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -121,6 +141,13 @@ const nuxtConfig: NuxtConfig = {
     FB_APP_ID: process.env.FB_APP_ID,
     FB_MEASUREMENT_ID: process.env.FB_MEASUREMENT_ID,
   },
+  publicRuntimeConfig: {
+    BASE_URL: baseUrl,
+  },
+  'google-gtag': {
+    id: process.env.FB_MEASUREMENT_ID,
+    debug: true,
+  }
 }
 
 export default nuxtConfig

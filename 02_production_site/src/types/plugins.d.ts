@@ -4,6 +4,7 @@ import { Logger } from '~/plugins/logger'
 declare module 'vue/types/vue' {
   interface Vue {
     readonly $log: Logger
+    $truncate: (value: string, max: number, suffix?: string) => string
   }
 }
 
@@ -11,6 +12,7 @@ declare module 'vue/types/vue' {
 declare module '@nuxt/types' {
   interface Context {
     readonly $log: Logger
+    $truncate: (value: string, max: number, suffix?: string) => string
   }
 }
 

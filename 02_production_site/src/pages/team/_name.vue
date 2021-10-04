@@ -1,6 +1,8 @@
 <template>
   <div v-if="team">
     <h1 class="page-title">{{ team.name }}</h1>
+    <p class="mb-6 text-lg font-bold">{{ team.description }}</p>
+    <!-- TODO : else文追加 -->
     <div class="grid grid-cols-2 sm:grid-cols-4">
       <card
         v-for="member in team.members"
@@ -9,6 +11,7 @@
       />
     </div>
     <h3 class="page-sub-title">Team Result</h3>
+    <!-- TODO : else文追加 -->
     <div
       class="flex mb-2"
       v-for="result in team.battle_record"
@@ -30,10 +33,9 @@ export default defineComponent({
   head: {},
   watchQuery: ['name'],
   setup () {
-    const { params, $microcms, error, redirect } = useContext()
-    // TODO : meta設定
-    const { title } = useMeta()
+    const { params, $microcms, error, redirect, $truncate, $config } = useContext()
     const team = ref<teams>()
+    const description = ref<string>('')
     useFetch(async () => {
       try {
         const { contents } = await $microcms.get<MicroResponseType<teams>>({
@@ -43,8 +45,8 @@ export default defineComponent({
             filters: `name[equals]${params.value.name}`
           }
         })
-        title.value = contents[0].name
         team.value = contents[0]
+        description.value = $truncate(team.value.description, 60)
       } catch (e) {
         error({
           statusCode: 404,
@@ -52,6 +54,17 @@ export default defineComponent({
         if (process.server) redirect(404, '/')
       }
     })
+
+    useMeta(() => ({
+      title: team.value?.name,
+      meta: [
+        { hid: 'description', name: 'description', content: description.value },
+        { hid: 'og:type', property: 'og:type', content: 'article' },
+        { hid: 'og:url', property: 'og:url', content: `${$config.BASE_URL}/team/${team.value?.name || ''}` },
+        { hid: 'og:title', property: 'og:title', content: `${team.value?.name || ''} | Jadeite` },
+        { hid: 'og:description', property: 'og:description', content: description.value },
+      ]
+    }))
     return {
       team
     }

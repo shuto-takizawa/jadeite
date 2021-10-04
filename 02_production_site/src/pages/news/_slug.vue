@@ -12,6 +12,7 @@
 
 <script lang='ts'>
 import { defineComponent, useContext, useMeta, useFetch, ref } from '@nuxtjs/composition-api'
+import { parse } from 'node-html-parser'
 import { news } from '~/types/cms-types'
 import Tag from '~/components/atoms/tag.vue'
 export default defineComponent({
@@ -21,18 +22,18 @@ export default defineComponent({
   head: {},
   watchQuery: ['slug'],
   setup () {
-    const { params, $microcms, $log, error, redirect } = useContext()
-    // TODO : meta設定
-    const { title } = useMeta()
+    const { params, $microcms, $log, error, redirect, $truncate, $config } = useContext()
     const news = ref<news>()
+    const description = ref<string>('')
     useFetch(async () => {
       try {
         const res = await $microcms.get<news>({
           endpoint: 'news',
           contentId: params.value.slug
         })
-        title.value = res.title
         news.value = res
+        const str = parse(news.value.content).text
+        description.value = $truncate(str, 60)
       } catch (e) {
         error({
           statusCode: 404,
@@ -41,6 +42,19 @@ export default defineComponent({
       }
     })
     $log.info('news result:', news.value)
+
+    useMeta(() => ({
+      title: news.value?.title,
+      meta: [
+        { hid: 'description', name: 'description', content: description.value },
+        { hid: 'og:type', property: 'og:type', content: 'article' },
+        { hid: 'og:url', property: 'og:url', content: `${$config.BASE_URL}/news/${news.value?.id || ''}` },
+        { hid: 'og:title', property: 'og:title', content: `${news.value?.title || ''} | Jadeite` },
+        { hid: 'og:description', property: 'og:description', content: description.value },
+        { hid: 'og:image', property: 'og:image', content: news.value?.thumbnail.url || `${$config.BASE_URL}/ogp-image.webp` },
+      ]
+    }))
+
     return {
       news,
     }

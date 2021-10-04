@@ -49,9 +49,9 @@ export default defineComponent({
   head: {},
   watchQuery: ['name'],
   setup () {
-    const { params, $microcms, error, redirect } = useContext()
-    const { title } = useMeta()
+    const { params, $microcms, error, redirect, $truncate, $config } = useContext()
     const member = ref<members>()
+    const description = ref<string>('')
     useFetch(async () => {
       try {
         const { contents } = await $microcms.get<MicroResponseType<members>>({
@@ -61,8 +61,8 @@ export default defineComponent({
             filters: `name[equals]${params.value.name}`
           }
         })
-        title.value = contents[0].name
         member.value = contents[0]
+        description.value = $truncate(member.value.description, 60)
       } catch (e) {
         error({
           statusCode: 404
@@ -70,6 +70,18 @@ export default defineComponent({
         if (process.server) redirect(404, '/')
       }
     })
+
+    useMeta(() => ({
+      title: member.value?.name,
+      meta: [
+        { hid: 'description', name: 'description', content: description.value },
+        { hid: 'og:type', property: 'og:type', content: 'article' },
+        { hid: 'og:url', property: 'og:url', content: `${$config.BASE_URL}/member/${member.value?.name || ''}` },
+        { hid: 'og:title', property: 'og:title', content: `${member.value?.name || ''} | Jadeite` },
+        { hid: 'og:description', property: 'og:description', content: description.value },
+      ]
+    }))
+
     return {
       member,
       twitter,

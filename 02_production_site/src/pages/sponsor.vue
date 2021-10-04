@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1 class="page-title">Sponsor</h1>
+    <!-- TODO : else文追加 -->
     <sponsor-list v-if="sponsors" :sponsors="sponsors" />
   </div>
 </template>
