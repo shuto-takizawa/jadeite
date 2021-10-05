@@ -31,7 +31,15 @@
       <figure class="order-1 lg:order-2">
         <nuxt-img
           class="mx-auto lg:w-2/3 rounded-3xl"
+          v-if="member.icon"
           :src="member.icon.url"
+          :alt="member.name"
+          format="webp"
+        />
+        <nuxt-img
+          class="mx-auto lg:w-2/3 rounded-3xl"
+          v-else
+          src="/no-image.png"
           :alt="member.name"
           format="webp"
         />
