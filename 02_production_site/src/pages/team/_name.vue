@@ -2,24 +2,26 @@
   <div v-if="team">
     <h1 class="page-title">{{ team.name }}</h1>
     <p class="mb-6 text-lg font-bold">{{ team.description }}</p>
-    <!-- TODO : else文追加 -->
-    <div class="grid grid-cols-2 sm:grid-cols-4">
+    <div v-if="team.members" class="grid grid-cols-2 sm:grid-cols-4">
       <card
         v-for="member in team.members"
         :key="member.id"
         :member="member"
       />
     </div>
+    <p v-else class="text-base font-semibold">Memberがいません</p>
     <h3 class="page-sub-title">Team Result</h3>
-    <!-- TODO : else文追加 -->
-    <div
-      class="flex mb-2"
-      v-for="result in team.battle_record"
-      :key="result.id"
-    >
-      <span class="text-sm sm:text-base">{{ $moment(result.result_data).format('YYYY/MM/DD') }}</span>
-      <span class="px-2 text-sm sm:text-base">{{ result.result_content }}</span>
+    <div v-if="team.battle_record">
+      <div
+        class="flex mb-2"
+        v-for="result in team.battle_record"
+        :key="result.id"
+      >
+        <span class="text-sm sm:text-base">{{ $moment(result.result_data).format('YYYY/MM/DD') }}</span>
+        <span class="px-2 text-sm sm:text-base">{{ result.result_content }}</span>
+      </div>
     </div>
+    <p v-else class="text-base font-semibold">戦績がありません</p>
   </div>
 </template>
 

@@ -83,9 +83,7 @@ type FunctionsResponseType = {
  * @param data
  */
 export const sendContactFormNotice = async (data: ContactFormNoticeData) => {
-  // TODO : 本番用に切り替え
-  // const to = 'info@team-jadeite.com'
-  const to = 'md.takizawa@gmail.com'
+  const to = 'info@team-jadeite.com'
   const sendData:SendMailData = { to, ...data}
   return await sendMail(sendData)
 }

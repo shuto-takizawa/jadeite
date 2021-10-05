@@ -4,7 +4,6 @@
     <section class="pt-20 sm:pt-32">
       <h2 class="text-3xl font-semibold text-center">Teams</h2>
       <div class="my-10 short-divider" />
-      <!-- TODO : else文追加 -->
       <div v-if="teams" class="grid grid-cols-2 sm:grid-cols-3">
         <team-card
           v-for="team in teams"
@@ -12,18 +11,21 @@
           :team="team"
         />
       </div>
+      <p v-else class="text-center text-xl font-semibold">Teamがありません</p>
     </section>
 
     <div class="my-10 sm:my-20 short-divider" />
 
     <!-- メンバー一覧 -->
-    <!-- TODO : else文追加 -->
-    <section v-if="members" class="grid grid-cols-3 sm:grid-cols-5">
-      <member-card
-        v-for="member in members"
-        :key="member.id"
-        :member="member"
-      />
+    <section>
+      <div v-if="members" class="grid grid-cols-3 sm:grid-cols-5">
+        <member-card
+          v-for="member in members"
+          :key="member.id"
+          :member="member"
+        />
+      </div>
+      <p v-else class="text-center text-xl font-semibold">Memberがいません</p>
     </section>
   </div>
 </template>

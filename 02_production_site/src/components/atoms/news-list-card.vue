@@ -1,9 +1,7 @@
 <template>
   <nuxt-link :to="`/news/${news.id}`" class="c-card">
-    <figure class="lg:h-full">
-      <!-- TODO : レスポンシブ時にデザイン崩れている
-      根本的な見直しが必要かもしれない -->
-      <nuxt-img :src="news.thumbnail.url" :alt="news.title" class="lg:h-full" />
+    <figure class="card-image">
+      <nuxt-img :src="news.thumbnail.url" :alt="news.title" />
     </figure>
     <div class="card-body">
       <p class="card-sub-text">{{ $moment(news.publishedAt).format('YYYY/MM/DD') }}</p>
@@ -29,12 +27,6 @@ export default defineComponent({
       required: true,
     }
   },
-  setup () {
-
-    return {
-
-    }
-  }
 })
 </script>
 
@@ -44,8 +36,18 @@ export default defineComponent({
 
   @apply block lg:flex m-4 lg:h-40 border border-gray-200 rounded-xl overflow-hidden shadow;
 
+  .card-image {
+    flex-basis: 30%;
+
+    > img {
+      @apply lg:w-full lg:h-full object-cover;
+    }
+  }
+
   .card-body {
     @apply px-6 py-4;
+
+    flex-basis: 70%;
 
     .card-title {
       @apply text-xl font-semibold text-site-black break-all;

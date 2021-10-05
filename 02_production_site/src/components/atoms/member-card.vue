@@ -3,7 +3,15 @@
     <figure class="mb-2 rounded-3xl overflow-hidden shadow-lg">
       <nuxt-img
         class="transition-all duration-500 ease-in-out transform"
+        v-if="member.icon"
         :src="member.icon.url"
+        :alt="member.name"
+        format="webp"
+      />
+      <nuxt-img
+        class="transition-all duration-500 ease-in-out transform"
+        v-else
+        src="/no-image.png"
         :alt="member.name"
         format="webp"
       />

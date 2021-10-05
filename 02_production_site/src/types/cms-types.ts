@@ -30,10 +30,6 @@ T,
    */
   image?: { url: string, width: number, height: number }
   /**
-   * Twitter
-   */
-  twitter?: string
-  /**
    * メンバー
    */
   members?: Reference<T,members>[]

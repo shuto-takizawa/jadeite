@@ -33,7 +33,7 @@
           {{ pager.length }}
         </nuxt-link>
       </li>
-      <li v-if="current < pager.length" class="page arrow">
+      <li v-if="current < pager.length">
         <nuxt-link :to="getPath(current + 1)">
           <span class="arrow right" />
         </nuxt-link>
