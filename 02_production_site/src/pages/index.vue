@@ -118,7 +118,6 @@ export default defineComponent({
         }
       })
       newsItems.value = contents
-      newsItems.value = new Array()
     })
     const sponsors = ref()
     useFetch(async () => {
