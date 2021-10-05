@@ -53,7 +53,7 @@
           </span>
         </nuxt-link>
       </div>
-      <div v-if="newsItems">
+      <div v-if="newsItems && newsItems.length">
         <news-list :items='newsItems' :type="'card'" />
       </div>
       <div v-else>
@@ -65,7 +65,7 @@
 
     <!-- スポンサー一覧 -->
     <section class="container px-8 max-w-5xl">
-      <div v-if="sponsors" class="grid grid-cols-2 lg:grid-cols-4">
+      <div v-if="sponsors && sponsors.length" class="grid grid-cols-2 lg:grid-cols-4">
         <a
           v-for="sponsor in sponsors"
           :key="sponsor.id"
@@ -118,6 +118,7 @@ export default defineComponent({
         }
       })
       newsItems.value = contents
+      newsItems.value = new Array()
     })
     const sponsors = ref()
     useFetch(async () => {

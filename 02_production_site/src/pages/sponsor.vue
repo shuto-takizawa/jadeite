@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="page-title">Sponsor</h1>
-    <sponsor-list v-if="sponsors" :sponsors="sponsors" />
+    <sponsor-list v-if="sponsors && sponsors.length" :sponsors="sponsors" />
     <p v-else class="text-center text-xl font-semibold">スポンサー募集中です</p>
   </div>
 </template>

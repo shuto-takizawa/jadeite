@@ -4,7 +4,7 @@
     <section class="pt-20 sm:pt-32">
       <h2 class="text-3xl font-semibold text-center">Teams</h2>
       <div class="my-10 short-divider" />
-      <div v-if="teams" class="grid grid-cols-2 sm:grid-cols-3">
+      <div v-if="teams && teams.length" class="grid grid-cols-2 sm:grid-cols-3">
         <team-card
           v-for="team in teams"
           :key="team.id"
@@ -18,7 +18,7 @@
 
     <!-- メンバー一覧 -->
     <section>
-      <div v-if="members" class="grid grid-cols-3 sm:grid-cols-5">
+      <div v-if="members && members.length" class="grid grid-cols-3 sm:grid-cols-5">
         <member-card
           v-for="member in members"
           :key="member.id"

@@ -2,7 +2,7 @@
   <div v-if="team">
     <h1 class="page-title">{{ team.name }}</h1>
     <p class="mb-6 text-lg font-bold">{{ team.description }}</p>
-    <div v-if="team.members" class="grid grid-cols-2 sm:grid-cols-4">
+    <div v-if="team.members && team.members.length" class="grid grid-cols-2 sm:grid-cols-4">
       <card
         v-for="member in team.members"
         :key="member.id"
@@ -11,7 +11,7 @@
     </div>
     <p v-else class="text-base font-semibold">Memberがいません</p>
     <h3 class="page-sub-title">Team Result</h3>
-    <div v-if="team.battle_record">
+    <div v-if="team.battle_record && team.battle_record.length">
       <div
         class="flex mb-2"
         v-for="result in team.battle_record"
