@@ -40,8 +40,10 @@
           <btn
             type="submit"
             :disabled="invalid"
+            :class="{loading: loading}"
           >
-            送信
+            <fa v-if="loading" :icon="spinner" />
+            <span v-else>送信</span>
           </btn>
         </div>
       </form>
@@ -50,8 +52,9 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent, reactive, toRefs, useContext, useRouter } from '@nuxtjs/composition-api'
+import { defineComponent, reactive, ref, toRefs, useContext, useRouter } from '@nuxtjs/composition-api'
 import { sendContactFormNotice } from '~/utils/mail'
+import { spinner } from '~/utils/font-awesome'
 import TextField from '~/components/atoms/text-field.vue'
 import TextArea from '~/components/atoms/text-area.vue'
 import Btn from '~/components/atoms/button.vue'
@@ -81,7 +84,10 @@ export default defineComponent({
       content: '',
     }))
 
+    const loading = ref<boolean>(false)
+
     const sendMail = async () => {
+      loading.value = true
       $log.info('name:', name.value)
       $log.info('email:', email.value)
       $log.info('content:', content.value)
@@ -94,10 +100,12 @@ export default defineComponent({
             content: content.value,
           }
         })
+        loading.value = false
         if (res.data.status === 'success')
           router.push('/contact-complate')
       } catch (e) {
         $log.error(e)
+        loading.value = false
         error({
           statusCode: 500,
         })
@@ -110,6 +118,8 @@ export default defineComponent({
       email,
       content,
       sendMail,
+      loading,
+      spinner,
     }
   }
 })
@@ -133,4 +143,16 @@ export default defineComponent({
   }
 }
 
+.btn.loading {
+  @apply pointer-events-none bg-opacity-50;
+
+  .fa-spinner {
+    animation: rotate 2s linear infinite;
+  }
+
+  @keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+}
 </style>

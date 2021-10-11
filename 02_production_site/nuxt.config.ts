@@ -5,7 +5,7 @@ const baseUrl = process.env.BASE_URL || 'http://localhost:3000'
 
 // Meta
 const siteName = 'Jadeite'
-const siteDesc = '2021年9月に設立致しました、Pro Gaming Team 「Jadeite」のオフィシャルサイトです。'
+const siteDesc = 'プロゲーミングチーム「Jadeite」のオフィシャルウェブサイトです。チームに関わる様々な情報を発信いたします。 Team Jadeite is a professional esports organization in Japan.'
 
 const nuxtConfig: NuxtConfig = {
   srcDir: 'src/',

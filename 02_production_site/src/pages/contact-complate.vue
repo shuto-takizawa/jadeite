@@ -1,8 +1,10 @@
 <template>
   <div>
     <h1 class="page-title">Contact Complate!</h1>
-    <p>お問い合わせが完了しました。</p>
-    <nuxt-link to="/">Topへ</nuxt-link>
+    <p class="mb-5 text-center text-xl font-semibold">お問い合わせが完了しました。</p>
+    <div class="text-center">
+      <nuxt-link  uxt-link to="/" class="px-2 py-1 text-white text-lg font-semibold bg-site-accent rounded-md transition-colors hover:bg-opacity-80">Topへ</nuxt-link>
+    </div>
   </div>
 </template>
 
@@ -11,13 +13,6 @@ import { defineComponent } from '@nuxtjs/composition-api'
 export default defineComponent({
   head: {
     title: 'Contact Complate'
-    // TODO : meta設定
   },
-  setup () {
-
-    return {
-
-    }
-  }
 })
 </script>
