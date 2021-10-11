@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="`/member/${member.name}`" class="c-card">
+  <nuxt-link :to="`/member/${member.id}`" class="c-card">
     <figure class="mb-2 rounded-3xl overflow-hidden shadow-lg">
       <nuxt-img
         class="transition-all duration-500 ease-in-out transform"

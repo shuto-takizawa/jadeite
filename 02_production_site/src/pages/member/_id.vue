@@ -51,26 +51,21 @@
 <script lang='ts'>
 import { defineComponent, useContext, useMeta, useFetch, ref } from '@nuxtjs/composition-api'
 import { members } from '~/types/cms-types'
-import { MicroResponseType } from '~/types/microcms'
 import { twitter, twitch, youtube } from '~/utils/font-awesome'
 export default defineComponent({
   head: {},
-  watchQuery: ['name'],
+  watchQuery: ['id'],
   setup () {
     const { params, $microcms, error, redirect, $truncate, $config } = useContext()
     const member = ref<members>()
     const description = ref<string>('')
     useFetch(async () => {
-      console.log('csr')
       try {
-        const { contents } = await $microcms.get<MicroResponseType<members>>({
+        const res = await $microcms.get<members>({
           endpoint: 'members',
-          queries: {
-            limit: 1,
-            filters: `name[equals]${params.value.name}`
-          }
+          contentId: params.value.id
         })
-        member.value = contents[0]
+        member.value = res
         description.value = $truncate(member.value.description, 60)
       } catch (e) {
         error({
