@@ -12,7 +12,6 @@
       <div class="text-center">
         <a href="https://twitter.com/Team_Jadeite" target="blank"><fa class="icon" :icon='twitter' /></a>
         <a href="https://www.youtube.com/channel/UCZnHIffwda5od9Tmliopb5Q" target="blank"><fa class="icon" :icon='youtube' /></a>
-        <a href="" target="blank"><fa class="icon" :icon='twitch' /></a>
       </div>
     </div>
   </aside>
@@ -20,7 +19,7 @@
 
 <script lang='ts'>
 import { defineComponent } from '@nuxtjs/composition-api'
-import { twitter, twitch, youtube } from '~/utils/font-awesome'
+import { twitter, youtube } from '~/utils/font-awesome'
 export default defineComponent({
   props: {
     drawer: {
@@ -34,7 +33,6 @@ export default defineComponent({
     return {
       hide,
       twitter,
-      twitch,
       youtube,
     }
   }

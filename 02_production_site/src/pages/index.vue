@@ -11,14 +11,6 @@
            alt="Hero Image"
            class="slider-img"
           />
-          <!-- <nuxt-img
-           v-for="(slide, idx) in slides"
-           :key="slide"
-           v-show="idx === current"
-           :src="slides[idx]"
-           alt="Hero Image"
-           class="slider-img"
-          /> -->
         </transition-group>
         <div class="block lg:hidden absolute bottom-1 z-10 left-1/2 transform -translate-x-1/2 text-center">
           <p class="mb-1 text-xl text-white font-semibold">SCROLL</p>
@@ -31,9 +23,6 @@
         </div>
         <div>
           <a href="https://www.youtube.com/channel/UCZnHIffwda5od9Tmliopb5Q" target="blank"><fa class="icon" :icon='youtube' /></a>
-        </div>
-        <div>
-          <a href="" target="blank"><fa class="icon" :icon='twitch' /></a>
         </div>
         <div class="scroll">
           <span class="scroll-arrow">
@@ -97,7 +86,7 @@
 
 <script lang='ts'>
 import { defineComponent, ref, useFetch, useContext, onMounted } from '@nuxtjs/composition-api'
-import { twitter, twitch, youtube, chevronDown } from '~/utils/font-awesome'
+import { twitter, youtube, chevronDown } from '~/utils/font-awesome'
 import { news, sponsors } from '~/types/cms-types'
 import { MicroResponseType } from '~/types/microcms'
 import NewsList from '~/components/molecules/news-list.vue'
@@ -135,9 +124,6 @@ export default defineComponent({
 
     const slides = ref([
       'hero-image.png',
-      // 'hero1.jpg',
-      // 'hero2.jpg',
-      // 'hero3.png',
     ])
 
     const current = ref(0)
@@ -152,7 +138,6 @@ export default defineComponent({
       newsItems,
       sponsors,
       twitter,
-      twitch,
       youtube,
       chevronDown,
       slides,
