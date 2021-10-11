@@ -15,7 +15,7 @@
           <fa :icon="youtube" class="icon" />
         </a>
       </div>
-      <p class="mb-3 text-sm sm:text-base">{{ sponsor.description }}</p>
+      <p class="mb-3 text-sm sm:text-base whitespace-pre-line">{{ sponsor.description }}</p>
       <a :href="sponsor.url" class="text-sm text-site-accent text-opacity-80 font-semibold transition-all duration-300 ease-in-out hover:text-opacity-100">Offical HP →</a>
     </div>
     <figure class="flex items-center justify-center">

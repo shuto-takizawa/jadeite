@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="divider" />
-        <p class=" whitespace-pre-wrap">{{ member.description }}</p>
+        <p class="whitespace-pre-line">{{ member.description }}</p>
       </div>
       <figure class="order-1 lg:order-2">
         <nuxt-img

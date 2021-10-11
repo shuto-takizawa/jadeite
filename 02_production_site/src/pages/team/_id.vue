@@ -18,7 +18,7 @@
         :key="result.id"
       >
         <span class="text-sm sm:text-base">{{ $moment(result.result_data).format('YYYY/MM/DD') }}</span>
-        <span class="px-2 text-sm sm:text-base sm:leading-4 whitespace-pre-wrap">{{ result.result_content }}</span>
+        <span class="px-2 text-sm sm:text-base whitespace-pre-line">{{ result.result_content }}</span>
       </div>
     </div>
     <p v-else class="text-base font-semibold">戦績がありません</p>
