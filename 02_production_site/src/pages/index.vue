@@ -126,9 +126,10 @@ export default defineComponent({
     })
 
     const slides = ref([
-      'hero1.jpg',
-      'hero2.jpg',
-      'hero3.png',
+      'hero-image.png',
+      // 'hero1.jpg',
+      // 'hero2.jpg',
+      // 'hero3.png',
     ])
 
     const current = ref(0)
