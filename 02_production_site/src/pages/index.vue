@@ -3,7 +3,7 @@
     <div class="hero-wrapper">
       <div class="slider">
         <transition-group name='fade'>
-          <nuxt-img
+          <img
            v-for="(slide, idx) in slides"
            :key="slide"
            v-show="idx === current"
@@ -11,6 +11,14 @@
            alt="Hero Image"
            class="slider-img"
           />
+          <!-- <nuxt-img
+           v-for="(slide, idx) in slides"
+           :key="slide"
+           v-show="idx === current"
+           :src="slides[idx]"
+           alt="Hero Image"
+           class="slider-img"
+          /> -->
         </transition-group>
         <div class="block lg:hidden absolute bottom-1 z-10 left-1/2 transform -translate-x-1/2 text-center">
           <p class="mb-1 text-xl text-white font-semibold">SCROLL</p>
