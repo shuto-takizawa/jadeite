@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1 class="page-title">News</h1>
-    <news-list v-if="newsItems" :items="newsItems" />
+    <news-list v-if="newsItems && newsItems.length" :items="newsItems" />
+    <p v-else class="text-center text-xl font-semibold">Newsがありません</p>
     <pagenation :pager="pager" :current="current" path="news" />
   </div>
 </template>

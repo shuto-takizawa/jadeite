@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="divider" />
-        <p>{{ member.description }}</p>
+        <p class=" whitespace-pre-wrap">{{ member.description }}</p>
       </div>
       <figure class="order-1 lg:order-2">
         <nuxt-img
@@ -61,6 +61,7 @@ export default defineComponent({
     const member = ref<members>()
     const description = ref<string>('')
     useFetch(async () => {
+      console.log('csr')
       try {
         const { contents } = await $microcms.get<MicroResponseType<members>>({
           endpoint: 'members',
