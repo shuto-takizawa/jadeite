@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="px-8">
     <section class="pt-20 sm:32 grid grid-cols-1 lg:grid-cols-2 gap-8" v-if="member">
       <div class="order-2 lg:order-1">
         <div class="flex items-end justify-between">
-          <h3 class="text-4xl font-semibold">{{ member.name }}</h3>
+          <h3 class="text-xl sm:text-4xl font-semibold">{{ member.name }}</h3>
           <div>
             <a
               v-show="member.twitter"
@@ -29,7 +29,7 @@
           </div>
         </div>
         <div class="divider" />
-        <p class="whitespace-pre-line">{{ member.description }}</p>
+        <p class="text-sm sm:text-base whitespace-pre-line">{{ member.description }}</p>
       </div>
       <figure class="order-1 lg:order-2">
         <nuxt-img
@@ -105,7 +105,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .icon {
-  @apply mx-1 text-3xl;
+  @apply mx-1 text-xl sm:text-3xl;
 }
 
 .divider {

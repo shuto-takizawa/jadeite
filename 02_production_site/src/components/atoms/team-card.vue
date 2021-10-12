@@ -14,7 +14,7 @@
         format="webp"
       />
     </figure>
-    <p class="text-center text-xl font-semibold">{{ team.name }}</p>
+    <p class="text-center text-lg sm:text-xl font-semibold">{{ team.name }}</p>
   </nuxt-link>
 </template>
 

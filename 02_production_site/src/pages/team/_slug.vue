@@ -1,7 +1,7 @@
 <template>
-  <div v-if="team">
+  <div v-if="team" class="px-8">
     <h1 class="page-title">{{ team.name }}</h1>
-    <p class="mb-6 text-lg font-bold whitespace-pre-line">{{ team.description }}</p>
+    <p class="mb-6 text-base sm:text-lg font-bold whitespace-pre-line">{{ team.description }}</p>
     <div v-if="team.members && team.members.length" class="grid grid-cols-2 sm:grid-cols-4">
       <card
         v-for="member in team.members"
@@ -13,12 +13,12 @@
     <h3 class="page-sub-title">Team Result</h3>
     <div v-if="team.battle_record && team.battle_record.length">
       <div
-        class="flex items-baseline mb-4"
+        class="block sm:flex items-baseline mb-4"
         v-for="result in team.battle_record"
         :key="result.id"
       >
-        <span class="text-sm sm:text-base">{{ $moment(result.result_data).format('YYYY/MM/DD') }}</span>
-        <span class="px-2 text-sm sm:text-base whitespace-pre-line">{{ result.result_content }}</span>
+        <p class="mb-2 sm:mb-0 text-sm sm:text-base">{{ $moment(result.result_data).format('YYYY/MM/DD') }}</p>
+        <p class="sm:px-2 text-sm sm:text-base whitespace-pre-line">{{ result.result_content }}</p>
       </div>
     </div>
     <p v-else class="text-base font-semibold">戦績がありません</p>
