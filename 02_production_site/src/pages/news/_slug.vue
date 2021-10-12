@@ -20,7 +20,7 @@ export default defineComponent({
     Tag,
   },
   head: {},
-  watchQuery: ['id'],
+  watchQuery: ['slug'],
   setup () {
     const { params, $microcms, $log, error, redirect, $truncate, $config } = useContext()
     const news = ref<news>()
@@ -29,7 +29,7 @@ export default defineComponent({
       try {
         const res = await $microcms.get<news>({
           endpoint: 'news',
-          contentId: params.value.id
+          contentId: params.value.slug
         })
         news.value = res
         const str = parse(news.value.content).text

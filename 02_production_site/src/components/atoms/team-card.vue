@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="`/team/${team.id}`" class="c-card">
+  <nuxt-link :to="`/team/${team.name}`" class="c-card">
     <figure class="mb-2 rounded-3xl overflow-hidden shadow-lg">
       <nuxt-img
         v-if="team.image"
