@@ -18,6 +18,10 @@ T,
    */
   name: string
   /**
+   * スラッグ
+   */
+  slug: string
+  /**
    * 説明文
    */
   description: string
@@ -30,7 +34,7 @@ T,
    */
   image?: { url: string, width: number, height: number }
   /**
-   * メンバー
+   * 所属メンバー
    */
   members?: Reference<T,members>[]
 }>
@@ -115,9 +119,13 @@ T,
    */
   name: string
   /**
+   * スラッグ
+   */
+  slug: string
+  /**
    * 説明文
    */
-  description?: string
+  description: string
   /**
    * アイコン画像
    */

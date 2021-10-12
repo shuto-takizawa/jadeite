@@ -33,7 +33,7 @@ import Card from '~/components/atoms/member-card.vue'
 export default defineComponent({
   components: { Card },
   head: {},
-  watchQuery: ['name'],
+  watchQuery: ['slug'],
   setup () {
     const { params, $microcms, error, redirect, $truncate, $config } = useContext()
     const team = ref<teams>()
@@ -44,7 +44,7 @@ export default defineComponent({
           endpoint: 'teams',
           queries: {
             limit: 1,
-            filters: `name[equals]${params.value.name}`
+            filters: `slug[equals]${params.value.slug}`
           }
         })
         team.value = contents[0]

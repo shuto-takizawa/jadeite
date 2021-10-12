@@ -8,18 +8,21 @@
             <a
               v-show="member.twitter"
               :href="member.twitter"
+              target="blank"
             >
               <fa :icon="twitter" class="icon" />
             </a>
             <a
               v-show="member.youtube"
               :href="member.youtube"
+              target="blank"
             >
               <fa :icon="youtube" class="icon" />
             </a>
             <a
               v-show="member.twitch"
               :href="member.twitch"
+              target="blank"
             >
               <fa :icon="twitch" class="icon" />
             </a>
@@ -55,19 +58,18 @@ import { MicroResponseType } from '~/types/microcms'
 import { twitter, twitch, youtube } from '~/utils/font-awesome'
 export default defineComponent({
   head: {},
-  watchQuery: ['name'],
+  watchQuery: ['slug'],
   setup () {
     const { params, $microcms, error, redirect, $truncate, $config } = useContext()
     const member = ref<members>()
     const description = ref<string>('')
     useFetch(async () => {
-      console.log('csr')
       try {
         const { contents } = await $microcms.get<MicroResponseType<members>>({
           endpoint: 'members',
           queries: {
             limit: 1,
-            filters: `name[equals]${params.value.name}`
+            filters: `slug[equals]${params.value.slug}`
           }
         })
         member.value = contents[0]

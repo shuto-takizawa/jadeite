@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <h1 v-if='error.statusCode === 404' class="page-title">404 Page Not Found ...</h1>
+    <h1 v-if='error.statusCode === 404' class="page-title">404 Page <br class="block sm:hidden">Not Found ...</h1>
     <h1 v-else class="page-title">Other Error...</h1>
   </div>
 </template>
@@ -14,7 +14,6 @@ export default defineComponent({
     // TODO : meta設定
   },
   props: {
-    // TODO : ステータスによって表示内容の切り替え
     error: {
       type: Object as PropType<NuxtError>,
       default: null
