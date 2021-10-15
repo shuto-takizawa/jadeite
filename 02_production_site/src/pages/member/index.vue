@@ -43,7 +43,9 @@ export default defineComponent({
   },
   head: {
     title: 'Member',
-    // TODO : meta設定
+    meta: [
+      { hid: 'description', name: 'description', content: 'Jadeiteに所属しているメンバーたちです。' },
+    ]
   },
   setup () {
     const { $microcms } = useContext()

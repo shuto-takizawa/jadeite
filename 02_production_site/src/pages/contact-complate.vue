@@ -12,7 +12,10 @@
 import { defineComponent } from '@nuxtjs/composition-api'
 export default defineComponent({
   head: {
-    title: 'Contact Complate'
+    title: 'Contact Complate',
+    meta: [
+      { hid: 'description', name: 'description', content: 'Jadeite問い合わせ窓口に、お問い合わせが完了しました。' },
+    ]
   },
 })
 </script>

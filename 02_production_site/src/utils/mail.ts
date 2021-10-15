@@ -21,7 +21,7 @@ const templateId = {
 /**
  * 必須項目
  */
-type RequiredDynamicData = {
+export type RequiredDynamicData = {
   name: string
   email: string
 }
@@ -29,11 +29,12 @@ type RequiredDynamicData = {
 /**
  * お問い合わせフォーム通知用
  */
-type DynamicContactFormNoticeData = RequiredDynamicData & {
+export type DynamicContactFormNoticeData = RequiredDynamicData & {
+  category: string
   content: string
 }
 
-type DynamicTemplateData = DynamicContactFormNoticeData
+export type DynamicTemplateData = DynamicContactFormNoticeData
 
 // ****************************
 // メール送信処理の型定義

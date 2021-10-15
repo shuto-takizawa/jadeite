@@ -2,7 +2,7 @@
   <div>
     <h1 class="page-title">Sponsor</h1>
     <sponsor-list v-if="sponsors && sponsors.length" :sponsors="sponsors" />
-    <p v-else class="text-center text-xl font-semibold">スポンサー募集中です</p>
+    <p v-else class="text-center text-xl font-semibold">パートナー様募集中</p>
   </div>
 </template>
 
@@ -15,8 +15,10 @@ import SponsorList from '~/components/molecules/sponsor-list.vue'
 export default defineComponent({
   components: { SponsorList },
   head: {
-    title: 'Sponsor'
-    // TODO : meta設定
+    title: 'Sponsor',
+    meta: [
+      { hid: 'description', name: 'description', content: 'Jadeiteをサポートして下さっているスポンサーの方々です。' },
+    ]
   },
   setup () {
     const { $microcms } = useContext()

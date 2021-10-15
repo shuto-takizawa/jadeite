@@ -1,6 +1,6 @@
 <template>
   <article v-if="news">
-    <p class="date">{{ $moment(news.publishedAt).format('YYYY/MM/DD') }}</p>
+    <p class="date">{{ $moment(news.post_date).format('YYYY/MM/DD') }}</p>
     <h1 class="title">{{ news.title }}</h1>
     <div class="tags">
       <tag v-for="tag in news.tags" :key="tag.id" :tag="tag" />

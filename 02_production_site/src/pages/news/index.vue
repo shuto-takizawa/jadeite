@@ -21,7 +21,9 @@ export default defineComponent({
   },
   head: {
     title: 'News',
-    // TODO : meta設定
+    meta: [
+      { hid: 'description', name: 'description', content: 'Jadeiteに関するニュースを発信しています。' },
+    ]
   },
   setup () {
     const { $microcms, params } = useContext()

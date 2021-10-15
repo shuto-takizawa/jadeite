@@ -21,8 +21,7 @@ export default defineComponent({
   head: {
     title: 'About us',
     meta: [
-      // TODO : meta設定
-      { name: 'description', content: 'Jadeiteについての詳細です。' }
+      { hid: 'description', name: 'description', content: 'JadeiteのAboutページです。' }
     ]
   }
 })
