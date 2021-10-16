@@ -5,6 +5,7 @@
       <nuxt-link class="link" @click.native="hide" to="/member">Member</nuxt-link>
       <nuxt-link class="link" @click.native="hide" to="/about">About</nuxt-link>
       <nuxt-link class="link" @click.native="hide" to="/sponsor">Sponsor</nuxt-link>
+      <nuxt-link class="link" @click.native="hide" to="/contact">Contact</nuxt-link>
     </div>
     <div class="divider" />
     <div class="mb-10">

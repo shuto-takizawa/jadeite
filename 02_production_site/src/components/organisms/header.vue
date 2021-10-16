@@ -9,6 +9,7 @@
         <nuxt-link class="link" to="/member">Member</nuxt-link>
         <nuxt-link class="link" to="/about">About</nuxt-link>
         <nuxt-link class="link" to="/sponsor">Sponsor</nuxt-link>
+        <nuxt-link class="link" to="/contact">Contact</nuxt-link>
       </div>
 
       <!-- サイドバー -->

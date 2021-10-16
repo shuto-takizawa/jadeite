@@ -98,6 +98,10 @@ T,
    */
   title: string
   /**
+   * 公開日
+   */
+  post_date: string
+  /**
    * 内容
    */
   content: string
@@ -106,7 +110,7 @@ T,
    */
   thumbnail: { url: string, width: number, height: number }
   /**
-   * タグ名
+   * タグ
    */
   tags?: Reference<T,tags>[]
 }>

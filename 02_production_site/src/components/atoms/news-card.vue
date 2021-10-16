@@ -5,7 +5,7 @@
     </figure>
     <div class="card-body">
       <h3 class="card-title">{{ news.title }}</h3>
-      <p class="card-sub-text">{{ $moment(news.publishedAt).format('YYYY/MM/DD') }}</p>
+      <p class="card-sub-text">{{ $moment(news.post_date).format('YYYY/MM/DD') }}</p>
       <div class="card-actions">
         <tag v-for="tag in news.tags" :key="tag.id" :tag="tag" small />
       </div>

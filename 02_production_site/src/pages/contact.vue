@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1 class="page-title">Contact us</h1>
-    <p class="mb-6 text-center text-base sm:text-lg font-semibold">Team Jadeiteへのお問い合わせは<br class="block sm:hidden">こちらから入力ください。</p>
+    <p class="mb-2 text-center text-base sm:text-lg font-semibold">Team Jadeiteへのお問い合わせは<br class="block sm:hidden">こちらから入力ください。</p>
+    <p class="mb-6 text-center text-sm sm:text-base text-gray-400">*内容により回答をお待たせする場合や回答しかねる場合がございます。</p>
     <validation-observer ref="obs" v-slot='{ handleSubmit, invalid }'>
       <form class="container max-w-3xl px-6 py-4 bg-gray-100 rounded-md" @submit.prevent="handleSubmit(sendMail)">
         <div class="row">
@@ -24,6 +25,14 @@
             name="メールアドレス"
             rules="required|email"
             placeholder="E-Mail"
+          />
+        </div>
+        <div class="row">
+          <p class="label">種別</p>
+          <select-box
+            v-model="category"
+            name="お問い合わせ種別"
+            :options="options"
           />
         </div>
         <div class="row">
@@ -53,43 +62,52 @@
 
 <script lang='ts'>
 import { defineComponent, reactive, ref, toRefs, useContext, useRouter } from '@nuxtjs/composition-api'
-import { sendContactFormNotice } from '~/utils/mail'
+import { sendContactFormNotice, DynamicContactFormNoticeData } from '~/utils/mail'
+import { SelectOptionType } from '~/types'
 import { spinner } from '~/utils/font-awesome'
 import TextField from '~/components/atoms/text-field.vue'
 import TextArea from '~/components/atoms/text-area.vue'
+import SelectBox from '~/components/atoms/select.vue'
 import Btn from '~/components/atoms/button.vue'
-
-type SendData = {
-  name: string
-  email: string
-  content: string
-}
 
 export default defineComponent({
   components: {
     TextField,
     TextArea,
+    SelectBox,
     Btn,
   },
   head: {
-    title: 'Contact us'
-    // TODO : meta設定
+    title: 'Contact us',
+    meta: [
+      { hid: 'description', name: 'description', content: 'Jadeiteお問い合わせページです。' }
+    ]
   },
   setup () {
     const { $log, error, redirect } = useContext()
     const router = useRouter()
-    const { name, email, content } = toRefs<SendData>(reactive({
+
+    // 問い合わせ種別選択肢
+    const options: SelectOptionType[] = [
+      { label: '取材/撮影/プレス', value: '取材/撮影/プレス' },
+      { label: '選手、スタッフ採用', value: '選手、スタッフ採用' },
+      { label: 'Web/SNS', value: 'Web/SNS' },
+      { label: 'その他', value: 'その他' },
+    ]
+
+    const { name, email, category, content } = toRefs<DynamicContactFormNoticeData>(reactive({
       name: '',
       email: '',
+      category: '',
       content: '',
     }))
-
     const loading = ref<boolean>(false)
 
     const sendMail = async () => {
       loading.value = true
       $log.info('name:', name.value)
       $log.info('email:', email.value)
+      $log.info('category:', category.value)
       $log.info('content:', content.value)
       try {
         const res = await sendContactFormNotice({
@@ -97,6 +115,7 @@ export default defineComponent({
           dynamicTemplateData: {
             name: name.value,
             email: email.value,
+            category: category.value,
             content: content.value,
           }
         })
@@ -116,10 +135,12 @@ export default defineComponent({
     return {
       name,
       email,
+      category,
       content,
       sendMail,
       loading,
       spinner,
+      options,
     }
   }
 })

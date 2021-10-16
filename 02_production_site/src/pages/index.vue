@@ -78,7 +78,7 @@
         </a>
       </div>
       <div v-else>
-        <p class="text-xl font-semibold text-center">スポンサー募集中です</p>
+        <p class="text-xl font-semibold text-center">パートナー様募集中</p>
       </div>
     </section>
   </div>
@@ -101,7 +101,6 @@ export default defineComponent({
   head: {
     title: 'Jadeite',
     titleTemplate: '',
-    // TODO : meta設定
   },
   setup () {
     const { $microcms } = useContext()
