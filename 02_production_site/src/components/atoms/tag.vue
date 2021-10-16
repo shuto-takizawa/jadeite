@@ -29,10 +29,10 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .tag {
-  @apply mx-2 px-2 sm:px-3 py-1 sm:py-2 text-center text-sm text-site-accent border border-site-accent rounded-3xl shadow;
+  @apply px-2 sm:px-3 py-1 sm:py-2 text-center text-sm text-site-accent border border-site-accent rounded-3xl shadow whitespace-nowrap;
 
   &.small {
-    @apply mx-1 px-2 py-1 text-xs;
+    @apply px-2 py-1 text-xs;
   }
 }
 </style>

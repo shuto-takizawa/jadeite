@@ -72,7 +72,7 @@ export default defineComponent({
 }
 
 .tags {
-  @apply mb-8 sm:mb-10 text-center;
+  @apply flex flex-wrap justify-center mb-8 sm:mb-10 gap-2;
 }
 
 .thumbnail {

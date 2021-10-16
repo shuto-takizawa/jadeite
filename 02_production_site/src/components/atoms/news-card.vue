@@ -48,11 +48,7 @@ export default defineComponent({
     }
 
     .card-actions {
-      @apply flex items-center mt-2;
-
-      & > * {
-        @apply mx-0 mr-2;
-      }
+      @apply flex items-center mt-2 flex-wrap gap-2;
     }
   }
 }
