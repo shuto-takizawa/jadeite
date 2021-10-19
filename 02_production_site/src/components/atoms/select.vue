@@ -4,7 +4,7 @@
     :rules='rules'
     :name='name'
   >
-    <fieldset class="">
+    <fieldset>
       <select :name="name" @change='updateValue' class="select">
         <template v-for="(option, idx) in options">
           <option :value="option.value" :key="idx">
@@ -19,7 +19,7 @@
 
 <script lang='ts'>
 import { defineComponent, onMounted, PropType } from '@nuxtjs/composition-api'
-import { SelectOptionType } from '~/types'
+import { InputOptionType } from '~/types'
 
 export default defineComponent({
   props: {
@@ -32,7 +32,7 @@ export default defineComponent({
       required: true,
     },
     options: {
-      type: Array as PropType<SelectOptionType[]>,
+      type: Array as PropType<InputOptionType[]>,
       required: true,
     },
     rules: {
@@ -40,8 +40,6 @@ export default defineComponent({
     }
   },
   setup ({ options }, { emit }) {
-
-    //
     onMounted(() => {
       emit('input', options[0].value)
     })

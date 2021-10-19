@@ -1,7 +1,7 @@
 /**
  * セレクトボックス要素のオプション
  */
-export type SelectOptionType = {
+export type InputOptionType = {
   label: string
   value: string
 }

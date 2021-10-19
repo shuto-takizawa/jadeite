@@ -45,6 +45,75 @@
             placeholder="Content"
           />
         </div>
+        <div>
+          <p class="mb-2 text-center text-sm sm:text-base">
+            当社
+            <span
+              @click="isOpen = true"
+              class="cursor-pointer text-site-accent font-semibold hover:text-opacity-80">
+              個人情報の取り扱いについて
+            </span>
+            に同意いただける場合は<br class="hidden sm:block">
+            チェックを付け、送信ボタンをクリックしてください。
+          </p>
+          <c-dialog v-model="isOpen">
+            <template #title>
+              <h3>個人情報の取り扱いについて</h3>
+            </template>
+            <template #content>
+              <p>
+                株式会社アンヴィル<br>
+                代表取締役社長　松川　博行<br>
+                個人情報保護管理者　総務グループ長
+              </p>
+              <p>
+                当社は、個人情報保護マネジメントシステム(PMS)に従い、ご提供いただいた個人情報を以下のとおり取扱わせていただきます。本内容をご理解いただき、ご同意の上でお問い合わせください。
+              </p>
+              <ol>
+                <li>
+                  個人情報の取得と利用目的について<br>
+                  ご登録いただきました個人情報は、お問い合わせの対応及び弊社が提供するサービスに関する情報のご案内に必 要な範囲で利用させていただきます。
+                </li>
+                <li>
+                  個人情報の第三者への提供について<br>
+                  ご本人の同意がある場合又は法令に基づく場合を除き、お預かりした個人情報を第三者に提供することはありま せん。
+                </li>
+                <li>
+                  個人情報の取扱いの委託について<br>
+                  お預かりした個人情報の取扱いの全部又は一部を委託することはありません。
+                </li>
+                <li>
+                  開示対象個人情報の開示等について<br>
+                  ご本人からの求めにより、当社が保有する開示対象個人情報の利用目的の通知・開示・内容の訂正・追加又は削 除・利用の停止・消去及び第三者への提供の停止(「開示等」といいます)に応じます。
+                </li>
+                <li>
+                  個人情報のご提供の任意性について<br>
+                  当社への個人情報のご提供は任意としております。ただし、ご登録いただいた情報が不足している場合は、第1項の目的を遂行できない場合があります。
+                </li>
+                <li>
+                  問い合わせ先<br>
+                  〒102-0073　東京都千代田区九段北1-3-1　VORT九段下9F<br>
+                  株式会社アンヴィル<br>
+                  電話 03-5577-3867　FAX 03-4333-7958
+                </li>
+              </ol>
+              <div class="my-4 sm:my-8 text-center">
+                <btn
+                  @click.native="isOpen = false"
+                >
+                  閉じる
+                </btn>
+              </div>
+            </template>
+          </c-dialog>
+          <toggle-box
+            v-model="isAgreement"
+            name="個人情報取扱への同意"
+            label="「個人情報の取り扱いについて」に同意します。"
+            :rules="{ required: { allowFalse: false } }"
+            class="flex justify-center"
+          />
+        </div>
         <div class="text-center mt-8">
           <btn
             type="submit"
@@ -63,19 +132,23 @@
 <script lang='ts'>
 import { defineComponent, reactive, ref, toRefs, useContext, useRouter } from '@nuxtjs/composition-api'
 import { sendContactFormNotice, DynamicContactFormNoticeData } from '~/utils/mail'
-import { SelectOptionType } from '~/types'
+import { InputOptionType } from '~/types'
 import { spinner } from '~/utils/font-awesome'
 import TextField from '~/components/atoms/text-field.vue'
 import TextArea from '~/components/atoms/text-area.vue'
 import SelectBox from '~/components/atoms/select.vue'
+import ToggleBox from '~/components/atoms/toggle.vue'
 import Btn from '~/components/atoms/button.vue'
+import CDialog from '~/components/molecules/dialog.vue'
 
 export default defineComponent({
   components: {
     TextField,
     TextArea,
     SelectBox,
+    ToggleBox,
     Btn,
+    CDialog,
   },
   head: {
     title: 'Contact us',
@@ -88,7 +161,7 @@ export default defineComponent({
     const router = useRouter()
 
     // 問い合わせ種別選択肢
-    const options: SelectOptionType[] = [
+    const options: InputOptionType[] = [
       { label: '取材/撮影/プレス', value: '取材/撮影/プレス' },
       { label: '選手、スタッフ採用', value: '選手、スタッフ採用' },
       { label: 'Web/SNS', value: 'Web/SNS' },
@@ -102,6 +175,8 @@ export default defineComponent({
       content: '',
     }))
     const loading = ref<boolean>(false)
+    const isAgreement = ref<boolean>(false)
+    const isOpen = ref<boolean>(false)
 
     const sendMail = async () => {
       loading.value = true
@@ -109,6 +184,7 @@ export default defineComponent({
       $log.info('email:', email.value)
       $log.info('category:', category.value)
       $log.info('content:', content.value)
+      $log.info('isAgreement', isAgreement.value)
       try {
         const res = await sendContactFormNotice({
           templateName: 'contact_form_notice',
@@ -141,6 +217,8 @@ export default defineComponent({
       loading,
       spinner,
       options,
+      isAgreement,
+      isOpen,
     }
   }
 })

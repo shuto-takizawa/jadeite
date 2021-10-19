@@ -17,7 +17,7 @@
 </template>
 
 <script lang='ts'>
-import { defineComponent } from '@nuxtjs/composition-api'
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
 export default defineComponent({
   props: {
     value: {
@@ -25,7 +25,7 @@ export default defineComponent({
       required: true,
     },
     type: {
-      type: String,
+      type: String as PropType<'text' | 'email'>,
       required: true,
     },
     name: {
