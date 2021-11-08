@@ -12,7 +12,7 @@
            class="slider-img"
           />
         </transition-group>
-        <div class="block lg:hidden absolute bottom-1 z-10 left-1/2 transform -translate-x-1/2 text-center">
+        <div class="block lg:hidden absolute bottom-1 left-1/2 transform -translate-x-1/2 text-center">
           <p class="mb-1 text-xl text-white font-semibold">SCROLL</p>
           <fa class="text-2xl text-white " :icon="chevronDown" />
         </div>

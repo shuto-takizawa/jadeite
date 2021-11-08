@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header class="flex items-center justify-between fixed top-0 px-4 sm:px-8 py-4 h-16 w-full bg-white z-10">
+    <header class="flex items-center justify-between fixed top-0 px-4 sm:px-8 py-4 h-16 w-full bg-white z-50">
       <nuxt-link to="/">
         <logo class="w-24 sm:w-32" />
       </nuxt-link>
@@ -11,11 +11,8 @@
         <nuxt-link class="link" to="/sponsor">Sponsor</nuxt-link>
         <nuxt-link class="link" to="/contact">Contact</nuxt-link>
       </div>
-
       <!-- サイドバー -->
-      <div class="block sm:hidden z-10">
-        <hamburger-btn @click.native="toggleDrawer" :drawer="drawer" />
-      </div>
+      <hamburger-btn class="block sm:hidden z-10" @click.native="toggleDrawer" :drawer="drawer" />
       <sidebar :drawer="drawer" @hideSidebar="toggleDrawer" />
     </header>
   </div>
