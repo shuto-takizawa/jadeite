@@ -2,16 +2,20 @@
   <div>
     <div class="hero-wrapper">
       <div class="slider">
-        <transition-group name='fade'>
-          <img
-           v-for="(slide, idx) in slides"
-           :key="slide"
-           v-show="idx === current"
-           :src="slides[idx]"
-           alt="Hero Image"
-           class="slider-img"
-          />
-        </transition-group>
+        <!-- 単一画像出力ロジック -->
+        <img src="/hero-image.png" alt="Hero Image" class="slider-img" />
+
+        <!-- キービジュアル切り替えロジック -->
+        <!-- <transition-group name='fade'>
+          <picture
+            v-for="(slide, idx) in responsiveSlides"
+            :key="`slide_${idx}`"
+            v-show="idx === current"
+          >
+            <source media='(min-width: 640px)' :srcset='slide.web' />
+            <img :src="slide.mobile" alt="Hero Image" class="slider-img">
+          </picture>
+        </transition-group> -->
         <div class="block lg:hidden absolute bottom-1 left-1/2 transform -translate-x-1/2 text-center">
           <p class="mb-1 text-xl text-white font-semibold">SCROLL</p>
           <fa class="text-2xl text-white " :icon="chevronDown" />
@@ -115,21 +119,28 @@ export default defineComponent({
       })
       newsItems.value = contents
     })
-    const sponsors = ref()
+    const sponsors = ref<sponsors[]>()
     useFetch(async () => {
       const { contents } = await $microcms.get<MicroResponseType<sponsors>>({endpoint: 'sponsors'})
       sponsors.value = contents
     })
 
-    const slides = ref([
-      'hero-image.png',
-    ])
-
+    // Heroスライド画像
     const current = ref(0)
+    const responsiveSlides = [
+      {
+        web: 'hero-image.png',
+        mobile: 'ogp-image.png',
+      },
+      {
+        web: 'ogp-image.png',
+        mobile: 'hero-image.png',
+      },
+    ]
 
     onMounted(() => {
       setInterval(() => {
-        current.value = current.value < slides.value.length - 1 ? current.value + 1 : 0
+        current.value = current.value < responsiveSlides.length - 1 ? current.value + 1 : 0
       }, 6000)
     })
 
@@ -139,8 +150,8 @@ export default defineComponent({
       twitter,
       youtube,
       chevronDown,
-      slides,
       current,
+      responsiveSlides,
     }
   },
 })
