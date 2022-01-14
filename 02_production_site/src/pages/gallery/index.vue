@@ -53,12 +53,8 @@ export default defineComponent({
     const loading = ref<boolean>(false)
     const offset = ref<number>(limit)
     const infiniteHandler = async (state: StateChanger) => {
-      console.log('読込開始', loading.value)
       if (loading.value) return
       if (!galleries.value) return
-
-
-      console.log('offset:', offset.value)
 
       try {
         loading.value = true
@@ -67,10 +63,14 @@ export default defineComponent({
           limit,
           offset: offset.value,
         })
-        galleries.value?.push(...contents)
 
-        console.log('totalCount', totalCount)
-        console.log('galleries length', galleries.value?.length)
+        // SSGを考慮して、現時点で既に全件取得していたら処理停止
+        if (totalCount === galleries.value.length) {
+          state.complete()
+          return
+        }
+
+        galleries.value?.push(...contents)
 
         if (totalCount === galleries.value?.length) {
           // 全て取得した
