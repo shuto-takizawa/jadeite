@@ -1,13 +1,20 @@
 type Reference<T, R> = T extends 'get' ? R : string | null;
+interface GetsType<T> {
+  contents: T[];
+  totalCount: number;
+  offset: number;
+  limit: number;
+}
 type DateType = {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
   revisedAt: string;
 };
-
 type Structure<T, P> = T extends 'get'
   ? { id: string } & DateType & Required<P>
+  : T extends 'gets'
+  ? GetsType<{ id: string } & DateType & Required<P>>
   : Partial<DateType> & (T extends 'patch' ? Partial<P> : P);
 
 export type teams<T='get'> = Structure<
@@ -148,6 +155,19 @@ T,
   twitch?: string
 }>
 
+export type gallery<T='get'> = Structure<
+T,
+{
+  /**
+   * 画像タイトル
+   */
+  title: string
+  /**
+   * 画像ファイル
+   */
+  image: { url: string, width: number, height: number }
+}>
+
 
 export interface EndPoints {
   get: {
@@ -157,6 +177,16 @@ export interface EndPoints {
     sponsors: sponsors<'get'>
     news: news<'get'>
     members: members<'get'>
+    gallery: gallery<'get'>
+  }
+  gets: {
+    teams: teams<'gets'>
+    team_battle_record: team_battle_record<'gets'>
+    tags: tags<'gets'>
+    sponsors: sponsors<'gets'>
+    news: news<'gets'>
+    members: members<'gets'>
+    gallery: gallery<'gets'>
   }
   post: {
     teams: teams<'post'>
@@ -165,6 +195,7 @@ export interface EndPoints {
     sponsors: sponsors<'post'>
     news: news<'post'>
     members: members<'post'>
+    gallery: gallery<'post'>
   }
   put: {
     teams: teams<'put'>
@@ -173,6 +204,7 @@ export interface EndPoints {
     sponsors: sponsors<'put'>
     news: news<'put'>
     members: members<'put'>
+    gallery: gallery<'put'>
   }
   patch: {
     teams: teams<'patch'>
@@ -181,5 +213,6 @@ export interface EndPoints {
     sponsors: sponsors<'patch'>
     news: news<'patch'>
     members: members<'patch'>
+    gallery: gallery<'patch'>
   }
 }

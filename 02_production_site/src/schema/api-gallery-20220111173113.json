@@ -1,0 +1,1 @@
+{"apiFields":[{"idValue":"Z9jJEsP3FH","fieldId":"title","name":"画像タイトル","kind":"text","required":true,"isUnique":false},{"fieldId":"image","name":"画像ファイル","kind":"media","required":true}],"customFields":[]}

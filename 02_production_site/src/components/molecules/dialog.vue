@@ -41,7 +41,7 @@ export default defineComponent({
   }
 
   &__body {
-    @apply w-full sm:w-1/2 h-full sm:h-2/3 overflow-hidden bg-white rounded-2xl shadow-xl;
+    @apply w-4/5 sm:w-1/2 h-2/3 overflow-hidden bg-white rounded-2xl shadow-xl;
   }
 
   &__title {

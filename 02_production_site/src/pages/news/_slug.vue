@@ -85,7 +85,7 @@ export default defineComponent({
   }
 
   p {
-    @apply text-base;
+    @apply text-base mb-4;
   }
 
   img {
@@ -94,6 +94,10 @@ export default defineComponent({
 
   a {
     @apply underline transition-colors duration-300 ease-in-out hover:text-gray-400;
+  }
+
+  blockquote {
+    @apply p-4 bg-gray-100;
   }
 }
 </style>
