@@ -1,5 +1,5 @@
 import { computed } from '@nuxtjs/composition-api'
-import { faChevronDown, faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown, faSpinner, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { faTwitter, faTwitch, faYoutube } from '@fortawesome/free-brands-svg-icons'
 
 /** Twitter Icon */
@@ -16,3 +16,6 @@ export const chevronDown = computed(() => faChevronDown)
 
 /** スピナー */
 export const spinner = computed(() => faSpinner)
+
+/** ×ボタン */
+export const times = computed(() => faTimes)

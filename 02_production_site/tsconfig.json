@@ -27,7 +27,8 @@
     "types": [
       "@nuxt/types",
       "@types/node",
-      "@nuxtjs/moment"
+      "@nuxtjs/moment",
+      "@nuxtjs/axios"
     ]
   },
   "include": [

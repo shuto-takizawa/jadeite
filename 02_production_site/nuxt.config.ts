@@ -57,6 +57,7 @@ const nuxtConfig: NuxtConfig = {
     '~/plugins/validate',
     '~/plugins/firebase',
     '~/plugins/utils',
+    { src: '~/plugins/infinite-loading', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -79,6 +80,7 @@ const nuxtConfig: NuxtConfig = {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios',
     '@nuxtjs/style-resources',
     '@nuxtjs/moment',
     '@nuxtjs/google-gtag',
@@ -146,7 +148,7 @@ const nuxtConfig: NuxtConfig = {
   },
   'google-gtag': {
     id: process.env.FB_MEASUREMENT_ID,
-    debug: true,
+    debug: false,
   }
 }
 

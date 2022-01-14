@@ -11,10 +11,11 @@
           <nuxt-link class="link" to="/about">About us</nuxt-link>
           <nuxt-link class="link" to="/news">News</nuxt-link>
           <nuxt-link class="link" to="/member">Member</nuxt-link>
-          <nuxt-link class="link" to="/sponsor">Sponsor</nuxt-link>
+          <nuxt-link class="link" to="/gallery">Gallery</nuxt-link>
         </div>
         <div>
           <a href="https://anvil.ne.jp" target="blank" class="link">Anvil</a>
+          <nuxt-link class="link" to="/sponsor">Sponsor</nuxt-link>
           <nuxt-link class="link" to="/contact">Contact us</nuxt-link>
           <nuxt-link class="link" to="/privacy-policy">Privacy policy</nuxt-link>
         </div>

@@ -1,5 +1,7 @@
 import * as functions from 'firebase-functions'
 import * as mail from '@sendgrid/mail'
+import { fetchMicroCMS } from './microcms'
+import { GetRequest } from 'microcms-js-sdk'
 mail.setApiKey(functions.config().sendgrid.apikey)
 const https = functions.region('asia-northeast1').https
 
@@ -25,3 +27,16 @@ exports.sendMail = https.onCall(async (data) => {
     }
   }
 )
+
+exports.fetchMicroCMS = https.onCall(async (data: GetRequest) => {
+  try {
+    const res = await fetchMicroCMS(data)
+    return {
+      status: 'success',
+      res,
+    }
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+})

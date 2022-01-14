@@ -1,25 +1,26 @@
 <template>
   <div>
-    <header class="flex items-center justify-between fixed top-0 px-4 sm:px-8 py-4 h-16 w-full bg-white z-50">
+    <header class="flex items-center justify-between fixed top-0 px-4 sm:px-8 py-4 h-16 w-full bg-white z-30">
       <nuxt-link to="/">
         <logo class="w-24 sm:w-32" />
       </nuxt-link>
-      <div class="hidden sm:block">
+      <div class="hidden md:block">
         <nuxt-link class="link" to="/news">News</nuxt-link>
         <nuxt-link class="link" to="/member">Member</nuxt-link>
         <nuxt-link class="link" to="/about">About</nuxt-link>
         <nuxt-link class="link" to="/sponsor">Sponsor</nuxt-link>
+        <nuxt-link class="link" to="/gallery">Gallery</nuxt-link>
         <nuxt-link class="link" to="/contact">Contact</nuxt-link>
       </div>
       <!-- サイドバー -->
-      <hamburger-btn class="block sm:hidden z-10" @click.native="toggleDrawer" :drawer="drawer" />
+      <hamburger-btn class="block md:hidden z-10" @click.native="toggleDrawer" :drawer="drawer" />
       <sidebar :drawer="drawer" @hideSidebar="toggleDrawer" />
     </header>
   </div>
 </template>
 
 <script lang='ts'>
-import { defineComponent, onMounted, ref, watch, onUnmounted } from '@nuxtjs/composition-api'
+import { defineComponent, ref, watch, onUnmounted } from '@nuxtjs/composition-api'
 import Logo from '~/components/atoms/logo.vue'
 import Sidebar from '~/components/organisms/sidebar.vue'
 import HamburgerBtn from '~/components/atoms/hamburger-btn.vue'

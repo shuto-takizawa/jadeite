@@ -84,7 +84,9 @@ type FunctionsResponseType = {
  * @param data
  */
 export const sendContactFormNotice = async (data: ContactFormNoticeData) => {
-  const to = 'info@team-jadeite.com'
+  const to = (process.env.NODE_ENV === 'production')
+    ? 'info@team-jadeite.com'
+    : 'md.takizawa@gmail.com'
   const sendData:SendMailData = { to, ...data}
   return await sendMail(sendData)
 }

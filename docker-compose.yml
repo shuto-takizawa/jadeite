@@ -5,7 +5,7 @@ services:
     image: firebsae
     container_name: teaser
     ports:
-      - '9005:9005'
+      - '9001:9005'
       - '5000:5000'
     working_dir: /usr/src
     volumes:
@@ -18,10 +18,21 @@ services:
     container_name: production
     ports:
       - '3000:3000'
-      - '9005:9005'
-      - '5001:5001'
-      - '4000:4000'
+      - '9002:9005'
     working_dir: /usr/src
     volumes:
       - ./02_production_site/:/usr/src/
+    tty: true
+
+  firebase:
+    build: ./02_production_site
+    image: jadeite
+    container_name: emulator
+    ports:
+      - '5001:5001'
+      - '4000:4000'
+    working_dir: /usr/src/functions
+    volumes:
+      - ./02_production_site:/usr/src/
+    command: yarn serve
     tty: true
