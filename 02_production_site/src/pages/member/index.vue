@@ -51,12 +51,12 @@ export default defineComponent({
     const { $microcms } = useContext()
     const teams = ref<teams[]>()
     useFetch(async () => {
-      const { contents } = await $microcms.get<MicroResponseType<teams>>({ endpoint: 'teams' })
+      const { contents } = await $microcms.get<MicroResponseType<teams>>({ endpoint: 'teams', queries: { limit: 1000, orders: '-publishedAt' }})
       teams.value =contents
     })
     const members = ref<members[]>()
     useFetch(async () => {
-      const { contents } = await $microcms.get<MicroResponseType<members>>({ endpoint: 'members' })
+      const { contents } = await $microcms.get<MicroResponseType<members>>({ endpoint: 'members', queries: { limit: 1000, orders: '-publishedAt' }})
       members.value = contents
     })
     return {
