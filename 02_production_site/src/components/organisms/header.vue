@@ -10,6 +10,7 @@
         <nuxt-link class="link" to="/about">About</nuxt-link>
         <nuxt-link class="link" to="/sponsor">Sponsor</nuxt-link>
         <nuxt-link class="link" to="/gallery">Gallery</nuxt-link>
+        <a class="link" href="https://store-jadeite.com" target="blank">Store</a>
         <nuxt-link class="link" to="/contact">Contact</nuxt-link>
       </div>
       <!-- サイドバー -->
