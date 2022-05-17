@@ -6,6 +6,7 @@
       <nuxt-link class="link" @click.native="hide" to="/about">About</nuxt-link>
       <nuxt-link class="link" @click.native="hide" to="/sponsor">Sponsor</nuxt-link>
       <nuxt-link class="link" @click.native="hide" to="/gallery">Gallery</nuxt-link>
+      <a class="link" href="https://store-jadeite.com/" target="blank">Store</a>
       <nuxt-link class="link" @click.native="hide" to="/contact">Contact</nuxt-link>
     </div>
     <div class="divider" />
