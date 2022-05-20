@@ -9,8 +9,14 @@
             :key="`slide_${idx}`"
             v-show="idx === current"
           >
-            <source media='(min-width: 640px)' :srcset='slide.web' />
-            <img :src="slide.mobile" alt="Hero Image" class="slider-img">
+            <div v-if="slide.link === ''">
+              <source media='(min-width: 640px)' :srcset='slide.web' />
+              <img :src="slide.mobile" alt="Hero Image" class="slider-img">
+            </div>
+            <a v-else :href="slide.link" target="blank">
+              <source media='(min-width: 640px)' :srcset='slide.web' />
+              <img :src="slide.mobile" alt="Hero Image" class="slider-img">
+            </a>
           </picture>
         </transition-group>
         <div class="block lg:hidden absolute bottom-1 left-1/2 transform -translate-x-1/2 text-center">
@@ -128,10 +134,12 @@ export default defineComponent({
       {
         web: 'hero-image.png',
         mobile: 'hero-image.png',
+        link: '',
       },
       {
         web: 'store-open.png',
         mobile: 'store-open.png',
+        link: 'https://store-jadeite.com',
       },
     ]
 
