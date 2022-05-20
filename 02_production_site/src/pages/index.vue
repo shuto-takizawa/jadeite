@@ -2,11 +2,8 @@
   <div>
     <div class="hero-wrapper">
       <div class="slider">
-        <!-- 単一画像出力ロジック -->
-        <img src="/hero-image.png" alt="Hero Image" class="slider-img" />
-
         <!-- キービジュアル切り替えロジック -->
-        <!-- <transition-group name='fade'>
+        <transition-group name='fade'>
           <picture
             v-for="(slide, idx) in responsiveSlides"
             :key="`slide_${idx}`"
@@ -15,7 +12,7 @@
             <source media='(min-width: 640px)' :srcset='slide.web' />
             <img :src="slide.mobile" alt="Hero Image" class="slider-img">
           </picture>
-        </transition-group> -->
+        </transition-group>
         <div class="block lg:hidden absolute bottom-1 left-1/2 transform -translate-x-1/2 text-center">
           <p class="mb-1 text-xl text-white font-semibold">SCROLL</p>
           <fa class="text-2xl text-white " :icon="chevronDown" />
@@ -130,11 +127,11 @@ export default defineComponent({
     const responsiveSlides = [
       {
         web: 'hero-image.png',
-        mobile: 'ogp-image.png',
+        mobile: 'hero-image.png',
       },
       {
-        web: 'ogp-image.png',
-        mobile: 'hero-image.png',
+        web: 'store-open.png',
+        mobile: 'store-open.png',
       },
     ]
 
