@@ -5,18 +5,20 @@
         <a
           v-show="sponsor.twitter"
           :href="sponsor.twitter"
+          target="_blank"
         >
           <fa :icon="twitter" class="icon" />
         </a>
         <a
           v-show="sponsor.youtube"
           :href="sponsor.youtube"
+          target="_blank"
         >
           <fa :icon="youtube" class="icon" />
         </a>
       </div>
       <p class="mb-3 text-xs sm:text-base whitespace-pre-line">{{ sponsor.description }}</p>
-      <a v-show="sponsor.url" :href="sponsor.url" class="text-sm text-site-accent text-opacity-80 font-semibold transition-all duration-300 ease-in-out hover:text-opacity-100">Offical HP →</a>
+      <a v-show="sponsor.url" :href="sponsor.url" target="_blank" class="text-sm text-site-accent text-opacity-80 font-semibold transition-all duration-300 ease-in-out hover:text-opacity-100">Offical HP →</a>
     </div>
     <figure class="flex items-center justify-center">
       <nuxt-img
